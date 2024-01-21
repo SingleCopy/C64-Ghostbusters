@@ -1,0 +1,34 @@
+*= $ab07
+LOOKUP_AB07:
+    .byte $40, $50, $60, $70, $80, $90, $a0, $b0, $c0, $d0, $e0, $f0
+
+*= $b36d
+TEXT_LOOKUP:
+    .byte <AccountBalance, >AccountBalance
+    .word TEXT_GHOSTBUSTERS_INTRO
+    .word TEXT_QUERY_EXISTING_ACCOUNT
+    .word TEXT_NEW_BUSINESS
+    .word TEXT_ENTER_ACCOUNT_NUMBER
+    .word TEXT_INVALID_ACCOUNT_NUMBER
+    .word TEXT_VEHICLE_SELECTION
+    .word TEXT_YOU_HAVE
+    .word TEXT_KEY_OPTIONS
+    .word TEXT_MONITORING_EQUIPMENT
+    .word TEXT_CAPTURE_EQUIPMENT
+    .word TEXT_STORAGE_EQUIPMENT_3
+    .byte $00, $eb   // ? account name?
+    .word TEXT_NOT_ENOUGH_MONEY
+    .word TEXT_GOOD_TRY
+    .word TEXT_FAILED_TO_CLOSE_PORTAL
+    .word TEXT_MADE_MORE_MONEY
+    .word TEXT_NEW_ACCOUNT_NUMBER
+    .word TEXT_WRITE_DOWN_NUMBER
+    .word TEXT_EMPTY
+    .word TEXT_COMPACT
+    .word TEXT_1963_HEARSE
+    .word TEXT_STATION_WAGON
+    .word TEXT_HIGH_PERFORMANCE
+    .word TEXT_CONGRATULATIONS
+    .word TEXT_PORTAL_CLOSED
+    .word TEXT_STARTING_BALANCE
+    .word TEXT_END_BALANCE

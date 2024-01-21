@@ -1,0 +1,21 @@
+{
+	"folders": [
+        {
+            "name": "Ghostbusters",
+            "path": "."
+        }
+    ],
+    "settings": {
+        "files.associations": {
+            "*.asm": "kickassembler"
+        },
+        "kickassembler.assembler.option.outputDirectory": ".\\Output",
+        "files.exclude": {
+            "**/.asminfo.txt": true,
+            "**/.source.txt": true,
+            "**/Output": true
+        },
+        "kickassembler.debuggerOptions": "-wait 5000 -autojmp",
+        "kickassembler.startup": "Code\\gameInit.asm"
+    }
+}

@@ -1,0 +1,71 @@
+*= $3624 "TEXT_TITLE_SCROLLER"
+TEXT_TITLE_SCROLLER:
+ .text "       "
+ .byte $5B, $5C, $5D, $5E, $5F, $60, $61, $62   //activision logo
+ .text "                       PRESS F1 OR F3 TO START  "
+ .text "GHOSTBUSTERS"
+ .byte $63, $66 // TM
+ .text "         DESIGNED BY DAVID CRANE   COPYRIGHT 1984  "
+
+*= $374B // Ends $375A
+BIT_TABLE:          //;uses one byte of VIC_INIT_VALUES(
+    .byte $01, $02, $04, $08, $10, $20, $40, $80
+    .byte $FE, $FD, $FB, $F7, $EF, $DF, $BF, $7F
+
+//    .encoding "ascii" char ( = 21 when it should be 23?
+*= $6443
+Lyrics:
+    .text @" \$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"IF THERE'S SOMETHING STRANGE\$0d"
+    .text @"IN YOUR NEIGHBORHOOD,\$0d"
+    .text @"WHO YOU GONNA CALL?\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"IF THERE'S SOMETHING WEIRD,\$0d"
+    .text @"AND IT DON'T LOOK GOOD,\$0d"
+    .text @"WHO YOU GONNA CALL?\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"I AIN'T 'FRAID OF NO GHOST(\$0d"
+    .text @"I AIN'T 'FRAID OF NO GHOST(\$0d"
+    .text @"IF YOU'RE SEEING THINGS\$0d"
+    .text @"RUNNING THROUGH YOUR HEAD,\$0d"
+    .text @"WHO CAN YOU CALL?\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"AN INVISIBLE MAN\$0d"
+    .text @"SLEEPING IN YOUR BED,\$0d"
+    .text @"WHO YOU GONNA CALL?\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"I AIN'T 'FRAID OF NO GHOST(\$0d"
+    .text @"I AIN'T 'FRAID OF NO GHOST(\$0d"
+    .text @"WHO YOU GONNA CALL?\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"IF YOU'RE ALL ALONE,\$0d"
+    .text @"PICK UP THE PHONE,\$0d"
+    .text @"AND CALL...\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"I AIN'T 'FRAID OF NO GHOST(\$0d"
+    .text @"I HEAR IT LIKES THE GIRLS.\$0d"
+    .text @"I AIN'T 'FRAID OF NO GHOST(\$0d"
+    .text @"YEAH(  YEAH(  YEAH(  YEAH(\$0d"
+    .text @"WHO YOU GONNA CALL?\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"IF YOU HAVE A DOSE OF A\$0d"
+    .text @"FREAKY GHOST, BABY,\$0d"
+    .text @"YOU'D BETTER CALL...\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"BUSTIN' MAKES ME FEEL GOOD(\$0d"
+    .text @"I AIN'T 'FRAID OF NO GHOST(\$0d"
+    .text @"I AIN'T 'FRAID OF NO GHOST(\$0d"
+    .text @"WHEN IT COMES THROUGH YOUR DOOR,\$0d"
+    .text @"UNLESS YOU JUST WANT SOME MORE,\$0d"
+    .text @"YOU'D BETTER CALL...\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"WHO YOU GONNA CALL?\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"WHO YOU GONNA CALL?\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"WHO YOU GONNA CALL?\$0d"
+    .text @"       GHOSTBUSTERS(\$0d"
+    .text @"WHO YOU GONNA CALL?\$0d"
+    .text @"       GHOSTBUSTERS(\$0d\$ff"
+
