@@ -91,25 +91,25 @@ TableGameStates:
     .word StateEnterZuul_PrepareEnding              // x2a
     .word StateEnterZuul_ScrollToTopOfBuilding      // x2b
     .word StateEnterZuul_CrossTheStreams            // x2c
-    .word StateFailure_NotEnoughMoney               // x2d
-    .word StateFailure_DisplayGoodTry               // x2e
-    .word StateFailure_CalculateAccountBalance      // x2f
-    .word StateFailure_FailedToClosePortal          // x30
-    .word StateSuccess_DisplayMadeMoreMoney         // x31
-    .word StateSuccess_WriteNewAccountBalance       // x32
-    .word StateSuccess_DisplayNewAccountNumber      // x33
-    .word StateSuccess_WriteNewAccountNumber        // x34
-    .word StateSuccess_WriteDownAccountBalance      // x35
-    .word StateSuccess_DisplayCongratulations       // x36
-    .word StateSuccess_CalculateAccountBalance      // x37
-    .word StateSuccess_DisplayPortalClosed          // x38
+    .word GameOverFailureScreen.States.NotEnoughMoney               // x2d
+    .word GameOverFailureScreen.States.DisplayGoodTry               // x2e
+    .word GameOverFailureScreen.States.CalculateAccountBalance      // x2f
+    .word GameOverFailureScreen.States.FailedToClosePortal          // x30
+    .word GameOverSuccessScreen.States.DisplayMadeMoreMoney         // x31
+    .word GameOverSuccessScreen.States.WriteNewAccountBalance       // x32
+    .word GameOverSuccessScreen.States.DisplayNewAccountNumber      // x33
+    .word GameOverSuccessScreen.States.WriteNewAccountNumber        // x34
+    .word GameOverSuccessScreen.States.WriteDownAccountBalance      // x35
+    .word GameOverSuccessScreen.States.DisplayCongratulations       // x36
+    .word GameOverSuccessScreen.States.CalculateAccountBalance      // x37
+    .word GameOverSuccessScreen.States.DisplayPortalClosed          // x38
     .word State_PlayLaughOnFailure                  // x39
     .word State_ResetGame                           // x3a
-    .word StateFailure_DisplayStartingBalanceText   // x3b
-    .word StateFailure_DisplayStartingBalanceAmount // x3c
-    .word StateFailure_DisplayEndBalanceText        // x3d
-    .word StateFailure_DisplayEndBalanceAmount      // x3e
-    .word StateFailure_SetNextGameState             // x3f
+    .word GameOverFailureScreen.States.DisplayStartingBalanceText   // x3b
+    .word GameOverFailureScreen.States.DisplayStartingBalanceAmount // x3c
+    .word GameOverFailureScreen.States.DisplayEndBalanceText        // x3d
+    .word GameOverFailureScreen.States.DisplayEndBalanceAmount      // x3e
+    .word GameOverFailureScreen.States.SetLaughSoundState            // x3f
 
 //keyboard matrix lookup?
 *= $389E

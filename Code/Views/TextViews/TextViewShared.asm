@@ -3,8 +3,8 @@
 #import "/AccountView/AccountView.asm"
 #import "/VehicleSelectionView/VehicleSelectionView.asm"
 #import "/EquipmentView/EquipmentView.asm"
-#import "/FailureScreen/FailureScreen.asm"
-#import "/SuccessScreen/SuccessScreen.asm"
+#import "/GameOverFailureScreen/GameOverFailureScreen.asm"
+#import "/GameOverSuccessScreen/GameOverSuccessScreen.asm"
 
 *= $35e6
 EquipmentScreenFillCarColor:
