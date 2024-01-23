@@ -39,7 +39,6 @@
     .label DisplayStartingBalanceText = $3b;
 }
 
-// Display Text
 .namespace DisplayText
 {
     .label Intro = $01;
@@ -62,4 +61,17 @@
     .label PortalClosed = $19;
     .label StartingBalance = $1a;
     .label EndBalance = $1b;
+}
+
+.namespace ScrollerText
+{
+
+}
+
+.namespace Speech
+{
+    .label Ghostbusters = $01;
+    .label HeSlimedMe = $02;
+    .label Laugh = $03;
+    .label Scream = $04;
 }

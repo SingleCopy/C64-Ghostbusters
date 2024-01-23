@@ -248,7 +248,7 @@ label_8a80:
     dec RemainingGhostbusters
 
     // play laugh
-    lda #$03
+    lda #Speech.Laugh
     jsr TriggerSpeech
 
     lda #$2f
@@ -363,7 +363,7 @@ StateEnterZuul_UpdateLoop:
     lda #$02
     jsr MoveObjectTowardsTarget.CustomSpeed
     ldx #$00
-    jsr label_9aef
+    jsr HandleJoystickInput
     jsr label_8a80
 
     label_8b77:
@@ -522,8 +522,8 @@ StateEnterZuul_CrossTheStreams:
     cmp #$10
     bne return
 
-    // zuul scream?
-    lda #$04
+    // zuul scream
+    lda #Speech.Scream
     jsr TriggerSpeech
     jmp NextGameState.ReturnToMainLoop
 

@@ -242,7 +242,7 @@ StateDrivingSetSpritePositions:
     sta CarPosX
     lsr
     lsr
-    jsr EquipmentScreenFillCarColor.FillCarColor
+    jsr TextViewShared.EquipmentScreenFillCarColor.FillCarColor
 
     ldx #$00
     lda #$08

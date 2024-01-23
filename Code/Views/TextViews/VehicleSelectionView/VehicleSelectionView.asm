@@ -32,7 +32,7 @@ SelectVehicleShowBalance:
 SelectVehicleShowBalance2:
 {
     jsr label_9d24
-    jsr TrimAccountBalance
+    jsr TextViewShared.TrimAccountBalance
     lda #$80
     jsr SetDisplayTextPointer
     jmp NextGameState
@@ -65,7 +65,7 @@ DisplayCarOptions:
     lda #$01
     sta TextOutputX
     sta TextOutputY
-    jsr EquipmentScreenFillCarColor
+    jsr TextViewShared.EquipmentScreenFillCarColor
     ldx #ZeroPagePointer1
 
     Loop:
@@ -120,7 +120,7 @@ ChooseCar:
     sta ZeroPagePointer3
     lda #$00
     sta ZeroPagePointer1
-    jsr HasEnoughMoney
+    jsr TextViewShared.HasEnoughMoney
     bcs BuyCar
 
     ShowCarsInfo:   // $764b
@@ -131,7 +131,7 @@ ChooseCar:
     }
 
     BuyCar:
-    jsr DeductMoney
+    jsr TextViewShared.DeductMoney
 
     PrepareScreen:
     jsr ClearScreen

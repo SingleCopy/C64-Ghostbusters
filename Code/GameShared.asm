@@ -81,6 +81,32 @@ NextGameState:
     jmp label_6fe2.MainLoop
 }
 
+*= $9664
+AddMoneyToAccount:
+{
+    sed
+    clc
+    lda MoneyInAccount + 2
+    adc ZeroPagePointer1
+    sta MoneyInAccount + 2
+    lda MoneyInAccount + 1
+    adc ZeroPagePointer1 + 1
+    sta MoneyInAccount + 1
+    lda MoneyInAccount
+    adc ZeroPagePointer3
+    sta MoneyInAccount
+    bcc noOverflow
+
+    // cap at $9999xx
+    lda #$99
+    sta MoneyInAccount + 1
+    sta MoneyInAccount
+
+    noOverflow:
+    cld
+    rts
+}
+
 *= $96CA
 DisableKeyboardInterrupts:
 {

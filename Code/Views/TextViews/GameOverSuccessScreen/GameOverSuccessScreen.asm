@@ -19,7 +19,7 @@
             lda #$00
             sta MoneyInAccount + 2
             jsr label_9d24
-            jsr TrimAccountBalance
+            jsr TextViewShared.TrimAccountBalance
             lda #$80
             jsr SetDisplayTextPointer
             jmp NextGameState
@@ -76,7 +76,7 @@
         *= $8d06
         CalculateAccountBalance:
         {
-            jsr CalculateAccountBalance
+            jsr TextViewShared.CalculateAccountBalance
             jmp NextGameState    
         }
 

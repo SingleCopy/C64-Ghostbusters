@@ -418,3 +418,219 @@ StatePrepareCaptureGhostSequence2:
         bpl loop
     }
 }
+
+*= $9080
+ActivatePhotonStreams:
+{
+    lda #$0f
+    sta VIC_SPRITE_EXPAND_Y
+    lda #$00
+    sta $7a
+
+    ldx #$02
+
+    label_908b:
+    txa
+    lsr
+    tay
+    lda $0077, y
+    and #$01
+    tay
+
+    // set photon beam positions
+    lda ObjectPosX + 10, x
+    clc
+    adc $a99a, y
+    sta ObjectPosX, x
+    sta ObjectPosX2, x
+    clc
+    adc $a99c, y
+    sta ObjectPosX + 4, x
+    sta ObjectPosX2 + 4, x
+
+    lda ObjectPosY + 10, x
+    sec
+    sbc #$29
+    sta ObjectPosY, x
+    sta ObjectPosY2, x
+    sec
+    sbc #$28
+    sta ObjectPosY + 4, x
+    sta ObjectPosY2 + 4, x
+    dex
+    dex
+    bpl label_908b
+    inc $79
+    lda $79
+    cmp #$06
+    bcc label_90c6
+    lda #$00
+    sta $79
+
+    label_90c6:
+    ldx #$01
+
+    label_90c8:
+    lda $77, x
+    and #$01
+    tay
+    lda RemainingBackbackCharge
+    bne label_90d7
+    nop
+    nop
+    nop
+    jmp label_90e6
+
+    label_90d7:
+    tya
+    pha
+    ldy #$04
+    nop
+    nop
+    nop
+    pla
+    tay
+    lda $a9c8, y
+    clc
+    adc $79
+
+    label_90e6:
+    sta $2b, x
+    sta $2d, x
+    dex
+    bpl label_90c8
+    rts
+}
+
+// compare object pos in slot x with $b0,$b1?
+*= $9a01
+DidObjectArriveAtTarget:
+{
+    lda ObjectPosX, x
+    cmp ObjectPosX2, x
+    bne return
+    lda ObjectPosY, x
+    cmp ObjectPosY2, x
+
+    return:
+    rts
+}
+
+*= $9ae3
+MoveAllObjectsTowardsTargetSpeed:
+{
+    ldx #$0e
+
+    loop:
+    {
+        lda #$02
+        jsr MoveObjectTowardsTarget.CustomSpeed
+        dex
+        dex
+        bpl loop
+    }
+
+    rts
+}
+
+*= $9aef
+HandleJoystickInput:
+{
+    lda JoystickValue
+
+    label_9af1:
+    sta ZeroPagePointer1 + 1
+    lda ZeroPagePointer1 + 1
+    and #$08
+    bne label_9afb
+    inc ObjectPosX2 + 10, x
+
+    label_9afb:
+    lda ZeroPagePointer1 + 1
+    and #$04
+    bne label_9b03
+    dec ObjectPosX2 + 10, x
+
+    label_9b03:
+    lda ZeroPagePointer1 + 1
+    and #$02
+    bne label_9b0b
+    inc ObjectPosY2 + 10, x
+
+    label_9b0b:
+    lda ZeroPagePointer1 + 1
+    and #$01
+    bne label_9b13
+    dec ObjectPosY2 + 10, x
+
+    label_9b13:
+    rts
+}
+
+*= $9b44
+label_9b44:
+{
+    lda $09
+    and #$01
+    bne label_9b6f
+    lda $77, x
+    and #$01
+    sta ZeroPagePointer1 + 1
+    lda ObjectPosX + 10, y
+    sec
+    sbc ObjectPosX2 + 10, y
+    beq label_9b5e
+    rol
+    and #$01
+    sta ZeroPagePointer1 + 1
+
+    label_9b5e:
+    lda $77, x
+    clc
+    adc #$02
+    cmp #$08
+    bcc label_9b69
+    lda #$00
+
+    label_9b69:
+    and #$fe
+    ora ZeroPagePointer1 + 1
+    sta $77, x
+
+    label_9b6f:
+    lda ObjectPosX2 + 10, y
+    cmp ObjectPosX + 10, y
+    bne label_9b88
+    lda ObjectPosY2 + 10, y
+    cmp ObjectPosY + 10, y
+    bne label_9b88
+
+    lda $77, x
+    and #$01
+    ora ZeroPagePointer1
+    jmp label_9b8d
+
+    label_9b88:
+    lda $77, x
+    clc
+    adc #$0e
+    
+    label_9b8d:
+    sta $30, x
+    rts
+}
+
+*= $9da9
+CopyXMultipliedBy256PlusYBytesFromZP5ToZPG6:
+{
+    lda (ZeroPagePointer5), y
+    sta (ZeroPagePointer6), y
+    dey
+    cpy #$ff
+    bne CopyXMultipliedBy256PlusYBytesFromZP5ToZPG6
+    dec ZeroPagePointer5 + 1
+    dec ZeroPagePointer6 + 1
+    dex
+    bpl CopyXMultipliedBy256PlusYBytesFromZP5ToZPG6
+    rts
+}

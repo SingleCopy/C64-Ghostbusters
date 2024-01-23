@@ -4,7 +4,7 @@
 *= $76bf
 StateEquipmentScreenPrepareCar:
 {
-    jsr EquipmentScreenFillCarColor
+    jsr TextViewShared.EquipmentScreenFillCarColor
     jmp NextGameState
 }
 
@@ -405,9 +405,9 @@ StateEquipmentScreen:
     sta ZeroPagePointer1
     sta ZeroPagePointer3
 
-    jsr HasEnoughMoney
+    jsr TextViewShared.HasEnoughMoney
     bcc CannotPutEquipmentInCar
-    jsr DeductMoney
+    jsr TextViewShared.DeductMoney
 
     lda EQUIPMENT_FLAG, y
     ora InstalledEquipment
@@ -645,7 +645,7 @@ StateEquipmentScreen:
     sta SelectedEquipment
     lda #GameStates.EquipmentScreenPrepareCar
     sta GameState
-    jmp ResetTextOutputCoords
+    jmp TextViewShared.ResetTextOutputCoords
 
     noAction:
     jmp NextGameState.ReturnToMainLoop

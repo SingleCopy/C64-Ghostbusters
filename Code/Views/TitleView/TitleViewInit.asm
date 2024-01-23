@@ -279,10 +279,10 @@ HaVoiceSample2:
 
 *= $62EB
 .macro TitleScreenInit(){
-    lda #01 // Ghostbusters
+    lda #Speech.Ghostbusters // Ghostbusters
     jsr TriggerSpeech
 
-    lda #03  // Ha ha ha ha ha
+    lda #Speech.Laugh  // Ha ha ha ha ha
     jsr TriggerSpeech
 
     MainSetup();

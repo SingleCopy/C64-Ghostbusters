@@ -68,18 +68,18 @@ TableGameStates:
     .word StateDrivingPrepareScreen                 // x13
     .word StateDrivingSetSpritePositions            // x14
     .word StateDrivingToTarget                      // x15
-    .word StatePrepareCaptureGhostSequence1         // x16
+    .word CaptureGhostScreen.States.Init            // x16
     .word StatePrepareCaptureGhostSequence2         // x17
-    .word StateCaptureGhostPlaceTrap                // x18
-    .word StateCaptureGhostPlaceFirstGhostbuster    // x19
-    .word StateCaptureGhostPlaceSecondGhostbuster   // x1a
-    .word StateCaptureGhostActivateProtonStream     // x1b
-    .word StateCaptureGhost_OpenTrap                // x1c
-    .word StateCaptureGhost_GhostCaptureFailed      // x1d
-    .word StateCaptureGhost_GhostCaptureSuccessful  // x1e
-    .word StateCaptureGhost_CaptureGhostInTrap      // x1f
-    .word StateCaptureGhost_MoveTowardsTrap         // x20 (32) => 64
-    .word StateCaptureGhost_PickUpTrap              // x21
+    .word CaptureGhostScreen.States.PlaceTrap                // x18
+    .word CaptureGhostScreen.States.PlaceFirstGhostbuster    // x19
+    .word CaptureGhostScreen.States.PlaceSecondGhostbuster   // x1a
+    .word CaptureGhostScreen.States.ActivateProtonStreams     // x1b
+    .word CaptureGhostScreen.States.OpenTrap                // x1c
+    .word CaptureGhostScreen.States.GhostCaptureFailed      // x1d
+    .word CaptureGhostScreen.States.GhostCaptureSuccessful  // x1e
+    .word CaptureGhostScreen.States.CaptureGhostInTrap      // x1f
+    .word CaptureGhostScreen.States.MoveGhostbustersTowardsTrap         // x20 (32) => 64
+    .word CaptureGhostScreen.States.PickUpTrap              // x21
     .word StateGHQ_Enter                            // x22
     .word StateGHQ_MoveGhostbustersFromGHQToCar     // x23
     .word StateCityMap_MashmallowManAttackIncoming  // x24
@@ -103,8 +103,8 @@ TableGameStates:
     .word GameOverSuccessScreen.States.DisplayCongratulations       // x36
     .word GameOverSuccessScreen.States.CalculateAccountBalance      // x37
     .word GameOverSuccessScreen.States.DisplayPortalClosed          // x38
-    .word State_PlayLaughOnFailure                  // x39
-    .word State_ResetGame                           // x3a
+    .word TextViewShared.States.PlayLaughOnFailure                  // x39
+    .word TextViewShared.States.ResetGame                           // x3a
     .word GameOverFailureScreen.States.DisplayStartingBalanceText   // x3b
     .word GameOverFailureScreen.States.DisplayStartingBalanceAmount // x3c
     .word GameOverFailureScreen.States.DisplayEndBalanceText        // x3d

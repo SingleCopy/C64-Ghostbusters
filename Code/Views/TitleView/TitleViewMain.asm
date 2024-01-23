@@ -118,7 +118,7 @@
         bne CheckKeyboardInput
         sta LastKeyPressed
 
-        lda #$01 //ghostbusters!
+        lda #Speech.Ghostbusters
         jsr TriggerSpeech
     }
 

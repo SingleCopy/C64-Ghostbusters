@@ -1097,7 +1097,7 @@ StateCityMap_MashmallowManDestroyBuilding:
     sta ZeroPagePointer1
     sta ZeroPagePointer3
 
-    jsr DeductMoney
+    jsr TextViewShared.DeductMoney
     jsr label_983d
 
     lda #GameStates.MoveGhostsToOriginalPositions
