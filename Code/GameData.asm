@@ -62,35 +62,35 @@ TableGameStates:
     .word StateEquipmentScreenPrepareCar            // 0d
     .word StateEquipmentSetTextAndSprites           // 0e
     .word StateEquipmentScreen                      // 0f
-    .word StateLoadCityMapData                      // x10 => 32 (32, 33)
-    .word StatePrepareMapScreen                     // x11
-    .word CityMapUpdateLoop                         // x12
-    .word StateDrivingPrepareScreen                 // x13
-    .word StateDrivingSetSpritePositions            // x14
-    .word StateDrivingToTarget                      // x15
+    .word CityMapScreen.States.Init                 // x10 => 32 (32, 33)
+    .word CityMapScreen.States.LoadCharData         // x11
+    .word CityMapScreen.States.UpdateLoop           // x12
+    .word DrivingScreen.States.LoadCharData         // x13
+    .word DrivingScreen.States.SetSpritePositions   // x14
+    .word DrivingScreen.States.DrivingToTarget      // x15
     .word CaptureGhostScreen.States.Init            // x16
-    .word StatePrepareCaptureGhostSequence2         // x17
-    .word CaptureGhostScreen.States.PlaceTrap                // x18
-    .word CaptureGhostScreen.States.PlaceFirstGhostbuster    // x19
-    .word CaptureGhostScreen.States.PlaceSecondGhostbuster   // x1a
-    .word CaptureGhostScreen.States.ActivateProtonStreams     // x1b
+    .word BuildingScreenShared.States.LoadBuildingGraphics  // x17
+    .word CaptureGhostScreen.States.PlaceTrap               // x18
+    .word CaptureGhostScreen.States.PlaceFirstGhostbuster   // x19
+    .word CaptureGhostScreen.States.PlaceSecondGhostbuster  // x1a
+    .word CaptureGhostScreen.States.ActivateProtonStreams   // x1b
     .word CaptureGhostScreen.States.OpenTrap                // x1c
     .word CaptureGhostScreen.States.GhostCaptureFailed      // x1d
     .word CaptureGhostScreen.States.GhostCaptureSuccessful  // x1e
     .word CaptureGhostScreen.States.CaptureGhostInTrap      // x1f
     .word CaptureGhostScreen.States.MoveGhostbustersTowardsTrap         // x20 (32) => 64
     .word CaptureGhostScreen.States.PickUpTrap              // x21
-    .word StateGHQ_Enter                            // x22
-    .word StateGHQ_MoveGhostbustersFromGHQToCar     // x23
-    .word StateCityMap_MashmallowManAttackIncoming  // x24
-    .word StateCityMap_MashmallowManDestroyBuilding // x25
-    .word StateCityMap_MashmallowManDefeated        // x26
-    .word StateCityMap_MoveGhostsToOriginalPositions // x27
-    .word StateEnterZuul_Prepare                    // x28
-    .word StateEnterZuul_UpdateLoop                 // x29
-    .word StateEnterZuul_PrepareEnding              // x2a
-    .word StateEnterZuul_ScrollToTopOfBuilding      // x2b
-    .word StateEnterZuul_CrossTheStreams            // x2c
+    .word GHQScreen.States.Init                            // x22
+    .word GHQScreen.States.MoveGhostbustersFromGHQToCar     // x23
+    .word CityMapScreen.States.MashmallowManAttackIncoming  // x24
+    .word CityMapScreen.States.MashmallowManDestroyingBuilding // x25
+    .word CityMapScreen.States.MashmallowManDefeated        // x26
+    .word CityMapScreen.States.MoveGhostsToOriginalPositions // x27
+    .word EnterZuulScreen.States.Init                               // x28
+    .word EnterZuulScreen.States.Update                             // x29
+    .word EnterZuulScreen.States.PrepareEnding                      // x2a
+    .word EnterZuulScreen.States.ScrollToTopOfBuilding              // x2b
+    .word EnterZuulScreen.States.CrossTheStreams                    // x2c
     .word GameOverFailureScreen.States.NotEnoughMoney               // x2d
     .word GameOverFailureScreen.States.DisplayGoodTry               // x2e
     .word GameOverFailureScreen.States.CalculateAccountBalance      // x2f

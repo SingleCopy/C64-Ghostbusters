@@ -46,8 +46,8 @@ label_73bd:
 {
     lda GameState
     cmp #GameStates.CityMapUpdateLoop
-    bcs label_73c6
-    jmp label_73c6.JumpToNextTableState
+    bcs CityMapScreen.label_73c6
+    jmp CityMapScreen.label_73c6.JumpToNextTableState
 }
 
 // replaces blanks with zero and substracts 40 if high enough (make upper case?)
@@ -79,6 +79,34 @@ NextGameState:
 
     ReturnToMainLoop:
     jmp label_6fe2.MainLoop
+}
+
+*= $8d96
+ResetStatesForTextDisplay:
+{
+    lda #$08
+    sta BackgroundColor
+    jsr ClearScreen
+    ldx #$0f
+    lda #$00
+
+    loop:
+    {
+        sta ObjectPosX, x
+        dex
+        bpl loop
+    }
+
+    jsr ClearMemory_0082_008A
+
+    lda #$ff
+    sta $88
+    sta $89
+    sta $8a
+    jsr ResetSIDRegisters
+    lda #$03
+    sta $15
+    rts
 }
 
 *= $9664
@@ -253,6 +281,23 @@ CheckFireButtonIsPressed:
     rts
 }
 
+*= $9c08
+label_9c08:
+{
+    cmp ZeroPagePointer1
+    bcc label_9c13
+    cmp ZeroPagePointer1 + 1
+    bcs label_9c13
+    sec
+    bcs label_9c14
+
+    label_9c13:
+    clc
+
+    label_9c14:
+    rts
+}
+
 // moves object in slot x towards target (POS_X2/Y2)
 *= $9c23
 MoveObjectTowardsTarget:
@@ -318,5 +363,25 @@ MoveObjectTowardsTarget:
     sta ObjectPosY, x
 
     label_9c75:
+    rts
+}
+
+*= $9d96
+Copy1536BytesFromZP5ToZP6:
+{
+    ldx #$05
+    ldy #$00
+
+    CopyXPlusYMultipliedBy256BytesFromZP5ToZP6:
+    {
+        lda (ZeroPagePointer5), y
+        sta (ZeroPagePointer6), y
+        iny
+        bne CopyXPlusYMultipliedBy256BytesFromZP5ToZP6
+        inc ZeroPagePointer5 + 1
+        inc ZeroPagePointer6 + 1
+        dex
+        bpl CopyXPlusYMultipliedBy256BytesFromZP5ToZP6
+    }
     rts
 }

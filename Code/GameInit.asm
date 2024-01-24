@@ -13,7 +13,7 @@
 #import "SoundEffects.asm"
 #import "/Views/TitleView/TitleViewInit.asm"
 #import "/Views/TextViews/TextViewShared.asm"
-#import "/Views/MapScreen/MapScreen.asm"
+#import "/Views/CityMapScreen/CityMapScreen.asm"
 #import "/Views/DrivingScreen/DrivingScreen.asm"
 #import "/Views/BuildingScreens/BuildingScreenShared.asm"
 #import "/Unused.asm"
@@ -159,16 +159,16 @@ ciaInit: {
 // Macros
 
 .macro ConfigureNMI() {
-    lda #$25
+    lda #<NMIVector
     sta NMI_ROM_VECTOR
-    lda #$64
+    lda #>NMIVector
     sta NMI_ROM_VECTOR + 1      //Set NMI Interrupt to $6425
-    lda #$76
+    lda #<RasterInterrupt
     sta IRQ_ROM_VECTOR_LOW      // Set Interrupt address to $8E76
-    lda #$8e
+    lda #>RasterInterrupt
     sta IRQ_ROM_VECTOR_HIGH
     lda #$15
-    sta ZeroPage1
+    sta ProcessorPort
     lda #$2f
     sta ZeroPage0 
 }

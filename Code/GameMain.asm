@@ -30,20 +30,20 @@ label_6fe2:
     sty VIC_BORDER_COLOR
 
     lda CountdownTimer
-    beq skipProgressCounterDecrement
+    beq skipCountdownTimerDecrement
     dec CountdownTimer
 
-    skipProgressCounterDecrement:
-    lda $64
-    beq label_7024
+    skipCountdownTimerDecrement:
+    lda CarDirectionControl
+    beq DrivingScreen.label_7024
     bpl label_701f
-    jsr MoveCarLeft
-    inc $64
-    jmp label_7024
+    jsr DrivingScreen.MoveCarLeft
+    inc CarDirectionControl
+    jmp DrivingScreen.label_7024
 
     label_701f:
-    jsr MoveCarRight
-    dec $64
+    jsr DrivingScreen.MoveCarRight
+    dec CarDirectionControl
 
     // Continues on to label_7024
 }

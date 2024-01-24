@@ -39,6 +39,7 @@
 .label SelectedEquipment    = $61 // 1 to 7, 0 = empty
 .label NumberOfEquipmentLoadedIntoCar   = $62
 .label CarPosX              = $63
+.label CarDirectionControl  = $64 // $ff moves the car left, $01 moves the car right
 .label CarDrivingCurrentPos = $66
 .label CarDrivingMaxLength  = $67
 .label RemainingGhostBait   = $69

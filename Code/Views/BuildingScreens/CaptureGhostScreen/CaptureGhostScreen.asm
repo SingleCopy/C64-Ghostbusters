@@ -55,9 +55,9 @@
         {
             lda #$0e
             jsr label_9b35
-            jsr MoveAllObjectsTowardsTargetSpeed
+            jsr BuildingScreenShared.MoveAllObjectsTowardsTargetSpeed
             ldx #$00
-            jsr HandleJoystickInput
+            jsr BuildingScreenShared.HandleJoystickInput
             jsr label_9b14
             jsr label_9a16
             ldx CaptureGhostVisitType
@@ -84,11 +84,11 @@
         *= $852b
         PlaceFirstGhostbuster:
         {
-            jsr MoveAllObjectsTowardsTargetSpeed
+            jsr BuildingScreenShared.MoveAllObjectsTowardsTargetSpeed
             jsr label_9aa6
             jsr label_9a8a
             ldx #$00
-            jsr HandleJoystickInput
+            jsr BuildingScreenShared.HandleJoystickInput
             jsr label_9b14
             lda #$0e
             jsr label_9b35
@@ -113,17 +113,17 @@
         *= $8562
         PlaceSecondGhostbuster:
         {
-            jsr MoveAllObjectsTowardsTargetSpeed
+            jsr BuildingScreenShared.MoveAllObjectsTowardsTargetSpeed
             jsr label_9aa6
             jsr label_9a8a
             ldx #$02
-            jsr HandleJoystickInput
+            jsr BuildingScreenShared.HandleJoystickInput
             jsr label_9b14
             lda #$0e
             sta ZeroPagePointer1
             ldx #$01
             ldy #$02
-            jsr label_9b44
+            jsr BuildingScreenShared.label_9b44
             jsr CheckFireButtonIsPressed
             beq return
             and #$10
@@ -151,8 +151,8 @@
             jsr label_992b
             
             backbackDischarged:
-            jsr MoveAllObjectsTowardsTargetSpeed
-            jsr ActivatePhotonStreams
+            jsr BuildingScreenShared.MoveAllObjectsTowardsTargetSpeed
+            jsr BuildingScreenShared.ActivatePhotonStreams
             ldy #$00
             lda ObjectPosX2 + 12
             sec
@@ -176,7 +176,7 @@
 
                 label_85c8:
                 ora JoystickValue
-                jsr HandleJoystickInput.label_9af1
+                jsr BuildingScreenShared.HandleJoystickInput.label_9af1
                 jsr label_9b14
                 dex
                 dex
@@ -237,7 +237,7 @@
                 beq waitForTrigger
             }
 
-            jsr ActivatePhotonStreams
+            jsr BuildingScreenShared.ActivatePhotonStreams
 
             lda #$00
             sta LoopTrigger
@@ -320,7 +320,7 @@
         OpenTrap: 
         {
             jsr label_9aa6
-            jsr MoveAllObjectsTowardsTargetSpeed
+            jsr BuildingScreenShared.MoveAllObjectsTowardsTargetSpeed
             lda #$0e
             sta VIC_SPRITE_EXPAND_Y
             lda #$00
@@ -377,7 +377,7 @@
         *= $8704
         GhostCaptureFailed: 
         {
-            jsr MoveAllObjectsTowardsTargetSpeed
+            jsr BuildingScreenShared.MoveAllObjectsTowardsTargetSpeed
             ldx #$02
             
             label_8709:
@@ -417,7 +417,7 @@
             lda #$00
             sta $c8, x
             lda #$03
-            jsr IncreaseCityPKEnergy
+            jsr CityMapScreen.IncreaseCityPKEnergy
 
             lda LastMiniGameResult
             beq label_874e
@@ -473,7 +473,7 @@
         *= $8794
         CaptureGhostInTrap: 
         {
-            jsr MoveAllObjectsTowardsTargetSpeed
+            jsr BuildingScreenShared.MoveAllObjectsTowardsTargetSpeed
             inc $79
             lda $79
             cmp #$06
@@ -491,7 +491,7 @@
 
             label_87af:
             ldx #$00
-            jsr DidObjectArriveAtTarget
+            jsr BuildingScreenShared.DidObjectArriveAtTarget
             bne label_8804
             lda $2b
             beq label_8804
@@ -625,9 +625,9 @@
         {
             lda #$0e
             jsr label_9b35
-            jsr MoveAllObjectsTowardsTargetSpeed
+            jsr BuildingScreenShared.MoveAllObjectsTowardsTargetSpeed
             ldx #$0a
-            jsr DidObjectArriveAtTarget
+            jsr BuildingScreenShared.DidObjectArriveAtTarget
             bne return
             lda #$a8
             sta ObjectPosX2 + 10
@@ -646,7 +646,7 @@
         {
             lda #$00
             jsr label_9b35
-            jsr MoveAllObjectsTowardsTargetSpeed
+            jsr BuildingScreenShared.MoveAllObjectsTowardsTargetSpeed
             jsr label_9a16
             ldx #$03
             loop:
@@ -1029,7 +1029,7 @@
         ldx #$01
 
         label_9b3b:
-        jsr label_9b44
+        jsr BuildingScreenShared.label_9b44
         dey
         dey
         dex
