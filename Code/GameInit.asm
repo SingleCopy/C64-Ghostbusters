@@ -11,11 +11,11 @@
 #import "GameData.asm"
 #import "Interrupts.asm"
 #import "SoundEffects.asm"
-#import "/Views/TitleView/TitleViewInit.asm"
-#import "/Views/TextViews/TextViewShared.asm"
-#import "/Views/CityMapScreen/CityMapScreen.asm"
-#import "/Views/DrivingScreen/DrivingScreen.asm"
-#import "/Views/BuildingScreens/BuildingScreenShared.asm"
+#import "/Screens/TitleView/TitleViewInit.asm"
+#import "/Screens/TextScreens/TextScreenShared.asm"
+#import "/Screens/CityMapScreen/CityMapScreen.asm"
+#import "/Screens/DrivingScreen/DrivingScreen.asm"
+#import "/Screens/BuildingScreens/BuildingScreenShared.asm"
 #import "/Unused.asm"
 
 //==============================================================================

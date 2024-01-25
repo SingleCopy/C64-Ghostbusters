@@ -46,22 +46,22 @@ VIC_INIT_VALUES:
 // e.g GameState x10 (16) becomes x20 (32), that maps to StateLoadCityMapData
 *= $381a
 TableGameStates:
-    .word InitIntro                                 // 00  (0,1)
-    .word StoreAccountName                          // 01 => 2  (2,3)
-    .word HaveAccountQuery                          // 02 => 4  (4,5)
-    .word AccountNumberEntered                      // 03 => 6  (6, 7)
-    .word InvalidHaveAccountQueryOption             // 04  (8)
-    .word InvalidAccountNumberEntered               // 05  (10)
-    .word ClearScreenAndResetTextOutputPos          // 06  (12)
-    .word SelectVehicleInit                         // 07  (14)
-    .word SelectVehicleShowBalance                  // 08  (16)
-    .word SelectVehicleShowBalance2                 // 09  (18)
-    .word DisplayCarOptions                         // 0a  (20)
-    .word ChooseCar                                 // 0b  (22)
-    .word StateDisplayEquipmentScreenCar            // 0c
-    .word StateEquipmentScreenPrepareCar            // 0d
-    .word StateEquipmentSetTextAndSprites           // 0e
-    .word StateEquipmentScreen                      // 0f
+    .word AccountScreen.States.InitIntro                                 // 00  (0,1)
+    .word AccountScreen.States.StoreAccountName                          // 01 => 2  (2,3)
+    .word AccountScreen.States.HaveAccountQuery                          // 02 => 4  (4,5)
+    .word AccountScreen.States.AccountNumberEntered                      // 03 => 6  (6, 7)
+    .word AccountScreen.States.InvalidHaveAccountQueryOption             // 04  (8)
+    .word AccountScreen.States.InvalidAccountNumberEntered               // 05  (10)
+    .word AccountScreen.States.ClearScreenAndResetTextOutputPos          // 06  (12)
+    .word VehicleSelectionScreen.States.Init                         // 07  (14)
+    .word VehicleSelectionScreen.States.CalculateBalance                  // 08  (16)
+    .word VehicleSelectionScreen.States.ShowBalance                 // 09  (18)
+    .word VehicleSelectionScreen.States.DisplayCarOptions                         // 0a  (20)
+    .word VehicleSelectionScreen.States.ChooseCar                                 // 0b  (22)
+    .word VehicleSelectionScreen.States.DisplayCar            // 0c
+    .word EquipmentScreen.States.PrepareCar            // 0d
+    .word EquipmentScreen.States.SetTextAndSprites           // 0e
+    .word EquipmentScreen.States.UpdateLoop                    // 0f
     .word CityMapScreen.States.Init                 // x10 => 32 (32, 33)
     .word CityMapScreen.States.LoadCharData         // x11
     .word CityMapScreen.States.UpdateLoop           // x12
@@ -103,8 +103,8 @@ TableGameStates:
     .word GameOverSuccessScreen.States.DisplayCongratulations       // x36
     .word GameOverSuccessScreen.States.CalculateAccountBalance      // x37
     .word GameOverSuccessScreen.States.DisplayPortalClosed          // x38
-    .word TextViewShared.States.PlayLaughOnFailure                  // x39
-    .word TextViewShared.States.ResetGame                           // x3a
+    .word TextScreenShared.States.PlayLaughOnFailure                  // x39
+    .word TextScreenShared.States.ResetGame                           // x3a
     .word GameOverFailureScreen.States.DisplayStartingBalanceText   // x3b
     .word GameOverFailureScreen.States.DisplayStartingBalanceAmount // x3c
     .word GameOverFailureScreen.States.DisplayEndBalanceText        // x3d

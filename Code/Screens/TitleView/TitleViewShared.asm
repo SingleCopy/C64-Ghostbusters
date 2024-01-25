@@ -129,3 +129,81 @@ _91C8:
         ldy $EA6E
         rts
 }
+
+*= $9d24
+label_9d24:
+{
+    lda MoneyInAccount
+    sta ZeroPagePointer1
+    lda MoneyInAccount + 1
+    sta ZeroPagePointer1 + 1
+    lda MoneyInAccount + 2
+    sta ZeroPagePointer3
+    lda #$30
+    sta AccountBalance
+    ldy #$01
+    lda #$03
+    sta $27
+    jsr label_9d51
+    lda #$ff
+    sta $ea17, y
+    jsr label_9d74
+    dex
+    lda #ZeroPagePointer1 + 1
+    sta AccountBalance, x
+    rts
+}
+
+    *= $9d51
+    label_9d51:
+    {
+        ldx #$00
+
+        loop:
+        {
+            lda ZeroPagePointer1, x
+            lsr
+            lsr
+            lsr
+            lsr
+            ora #$30
+            sta AccountBalance, y
+            iny
+            lda ZeroPagePointer1, x
+            and #$0f
+            ora #$30
+            sta AccountBalance, y
+            iny
+            inx
+            cpx $27
+            bcc loop
+        }
+
+        lda #$ff
+        sta AccountBalance, y
+        rts
+    }
+
+    label_9d74:
+    {
+        ldx #$00
+        loop:
+        {
+            lda $ea15, x
+            cmp #$ff
+            beq return
+            cmp #$2e
+            beq return
+            lda AccountBalance, x
+            cmp #$ff
+            beq return
+            cmp #$30
+            bne return
+            lda #$20
+            sta AccountBalance, x
+            inx
+            jmp loop
+        }
+        return: // $9d95
+        rts
+    }

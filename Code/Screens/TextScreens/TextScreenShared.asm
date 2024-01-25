@@ -1,12 +1,12 @@
 #importonce 
-#import "TextViewSharedData.asm"
-#import "/AccountView/AccountView.asm"
-#import "/VehicleSelectionView/VehicleSelectionView.asm"
-#import "/EquipmentView/EquipmentView.asm"
+#import "TextScreenSharedData.asm"
+#import "/AccountScreen/AccountScreen.asm"
+#import "/VehicleSelectionScreen/VehicleSelectionScreen.asm"
+#import "/EquipmentScreen/EquipmentScreen.asm"
 #import "/GameOverFailureScreen/GameOverFailureScreen.asm"
 #import "/GameOverSuccessScreen/GameOverSuccessScreen.asm"
 
-.namespace TextViewShared 
+.namespace TextScreenShared 
 {
     .namespace States
     {
@@ -43,7 +43,7 @@
     }
     
     *= $35e6
-    EquipmentScreenFillCarColor:
+    SetCarColor:
     {          
         lda #$12
 
@@ -180,6 +180,39 @@
             rts
     }
 
+    *= $91a6
+    label_91a6:
+    {
+        lda $07
+        asl
+        eor $07
+        asl
+        eor $07
+        asl
+        asl
+        eor $07
+        asl
+        rol $07
+        rts
+    }
+
+    *= $91b6
+    label_91b6:
+    {
+        lda #$00
+        sta ZeroPagePointer1
+        ldx #$13
+
+        label_91bc:
+        lda AccountName, x
+        clc
+        adc ZeroPagePointer1
+        sta ZeroPagePointer1
+        dex
+        bpl label_91bc
+        rts
+    }
+
     *= $9b90
     CalculateAccountBalance:
     {
@@ -247,6 +280,39 @@
         sta AccountBalance, x
         lda #$80
         jsr SetDisplayTextPointer
+        rts
+    }
+
+    *= $9bee
+    SetDisplayTextPointer:
+    {
+        bmi msbSet
+
+        ldx #$00
+        beq skip
+
+        msbSet:
+        ldx #$01
+
+        skip:
+        stx $ea76
+        sta CurrentlyDisplayedText
+        asl
+        tax
+        // low
+        lda TEXT_LOOKUP, x
+        sta ZeroPagePointer2
+        // high
+        lda TEXT_LOOKUP + 1, x
+        sta ZeroPagePointer2 + 1
+        rts
+    }
+
+    *= $9c83
+    label_9c83:
+    {
+        lda #$01
+        sta NumberOfKeysInBuffer
         rts
     }
 }

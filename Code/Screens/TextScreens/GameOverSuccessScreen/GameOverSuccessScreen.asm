@@ -9,7 +9,7 @@
         DisplayMadeMoreMoney:
         {
             lda #DisplayText.MadeMoreMoney
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 
@@ -19,9 +19,9 @@
             lda #$00
             sta MoneyInAccount + 2
             jsr label_9d24
-            jsr TextViewShared.TrimAccountBalance
+            jsr TextScreenShared.TrimAccountBalance
             lda #$80
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 
@@ -29,7 +29,7 @@
         DisplayNewAccountNumber:
         {
             lda #DisplayText.NewAccountNumber
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 
@@ -48,7 +48,7 @@
             lda #$04
             jsr label_9d4d
             lda #$80
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 
@@ -56,7 +56,7 @@
         WriteDownAccountBalance:
         {
             lda #DisplayText.WriteDownAccountNumber
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             lda #GameStates.PlayLaughOnFailure
             sta GameState
             jmp NextGameState.ReturnToMainLoop
@@ -69,14 +69,14 @@
             lda #$00
             sta LastMiniGameResult
             lda #DisplayText.Congratulations
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 
         *= $8d06
         CalculateAccountBalance:
         {
-            jsr TextViewShared.CalculateAccountBalance
+            jsr TextScreenShared.CalculateAccountBalance
             jmp NextGameState    
         }
 
@@ -84,7 +84,7 @@
         DisplayPortalClosed:
         {
             lda #DisplayText.PortalClosed
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             lda #GameStates.DisplayMadeMoreMoney
             sta GameState
             jmp NextGameState.ReturnToMainLoop
@@ -99,7 +99,7 @@
         sta ZeroPagePointer3
         lda MoneyInAccount + 1
         sta $27
-        jsr label_91b6
+        jsr TextScreenShared.label_91b6
         ldx ZeroPagePointer1
         lda ZeroPagePointer3
         clc
@@ -111,7 +111,7 @@
         sta $07
 
         label_9106:
-        jsr label_91a6
+        jsr TextScreenShared.label_91a6
         dex
         bne label_9106
         lda $07
@@ -154,5 +154,12 @@
         dex
         bpl label_9122
         rts
+    }
+
+    *= $9d4d
+    label_9d4d:
+    {
+        sta $27
+        ldy #$00
     }
 }

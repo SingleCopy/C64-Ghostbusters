@@ -10,7 +10,7 @@
         {
             jsr ResetStatesForTextDisplay
             lda #DisplayText.NotEnoughMoney
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             lda #GameStates.DisplayStartingBalanceText
             sta GameState
             sta LastMiniGameResult
@@ -24,14 +24,14 @@
             lda #$00
             sta LastMiniGameResult
             lda #DisplayText.GoodTry
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 
         *= $8c96
         CalculateAccountBalance:
         {
-            jsr TextViewShared.CalculateAccountBalance
+            jsr TextScreenShared.CalculateAccountBalance
             jmp NextGameState
         }
 
@@ -39,7 +39,7 @@
         FailedToClosePortal:
         {
             lda #DisplayText.FailedToClosePortal
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 
@@ -47,7 +47,7 @@
         DisplayStartingBalanceText:
         {
             lda #DisplayText.StartingBalance
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 
@@ -66,9 +66,9 @@
             }
 
             jsr label_9d24
-            jsr TextViewShared.TrimAccountBalance
+            jsr TextScreenShared.TrimAccountBalance
             lda #$80
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 
@@ -76,7 +76,7 @@
         DisplayEndBalanceText:
         {
             lda #DisplayText.EndBalance
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 
@@ -90,9 +90,9 @@
             lda $56
             sta MoneyInAccount + 2
             jsr label_9d24
-            jsr TextViewShared.TrimAccountBalance
+            jsr TextScreenShared.TrimAccountBalance
             lda #$80
-            jsr SetDisplayTextPointer
+            jsr TextScreenShared.SetDisplayTextPointer
             jmp NextGameState
         }
 

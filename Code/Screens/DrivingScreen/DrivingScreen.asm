@@ -88,7 +88,7 @@
             sta CarPosX
             lsr
             lsr
-            jsr TextViewShared.EquipmentScreenFillCarColor.FillCarColor
+            jsr TextScreenShared.SetCarColor.FillCarColor
 
             ldx #$00
             lda #$08
@@ -614,5 +614,134 @@
         tax
         lda CAR_GB_LOGO_COLORS, x
         sta VIC_SPRITE_COLOR + 2
+    }
+
+    *= $7061
+    label_7061:
+    {
+        jsr DisableKeyboardInterrupts
+        lda $02
+        cmp #$80
+        beq label_7070
+        lda #$1f
+        sta JoystickValue
+        sta $34
+    }
+
+    *= $7070
+    label_7070:
+    {
+        jsr ScanKeyboard
+        lda $20
+        cmp #$01
+        bne label_708c
+        lda #$02
+        sta $20
+        lda #$80
+        sta $02
+        asl
+        sta $03
+        sta $04
+        sta $05
+        ldx #$11
+        bne PrepareToCopy.CopyBytes
+    }
+
+    *= $708C
+    label_708c: 
+    {
+        lda $08
+        bne label_70ba
+        bit $02
+        bmi label_70aa
+        inc $03
+        lda $03
+        and #$07
+        sta $03
+        bne label_70aa
+        lda #$c0
+        sta $02
+    }
+
+    *= $70a2
+    PrepareToCopy:
+    {
+        // copy 12 bytes from $9051 to $33
+        ldx #$0b
+
+        CopyBytes:
+        {
+            jsr Copy18BytesFrom9051To33.CopyXBytesFrom9051To33
+            jmp NextGameState.ReturnToMainLoop
+        }
+    }
+
+     *= $70aa
+    label_70aa:
+    {
+        inc $46
+        bne label_70ba
+        inc $45
+        lda $45
+        cmp #$04
+        bcc label_70ba
+        lda #$80
+        sta $45
+    }
+
+    *= $70ba
+    label_70ba:
+    {
+        lda GameState
+        cmp #GameStates.PrepareEnding
+        bcs label_70ee
+        lda $19
+        cmp #$3f
+        beq label_70d7
+    }
+
+    *= $70c6
+    label_70c6:
+    {
+        lda $47
+        and #$bf
+        sta $47
+        bmi label_70ee
+        lda SHADOW_SID_VOLUME
+        sta SID_VOICE_3_MAIN_VOLUME_CONTROL
+        jmp label_70ee
+    }
+
+    *= $70d7
+    label_70d7: 
+    {
+        lda GameState
+        cmp #GameStates.CityMapUpdateLoop
+        bcc label_70c6
+        bit $47
+        bvs label_70ee
+        lda $47
+        eor #$80
+        ora #$40
+        sta $47
+        lda #$00
+        sta SID_VOICE_3_MAIN_VOLUME_CONTROL
+    }
+
+    *= $70ee
+    label_70ee: {
+        bit $47
+        bmi return
+        inc $09
+        bit $02
+        bpl return
+        lda $14
+        beq label_7106
+        dec $14
+        bne return
+        jmp PrepareToCopy
+
+        return: // $7103
+        jmp NextGameState.ReturnToMainLoop
     }
 }

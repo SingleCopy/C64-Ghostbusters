@@ -46,7 +46,7 @@
             lda #$00
             sta $5e
             jsr ClearMemory_0082_008A
-            jmp ChooseCar.PrepareScreen
+            jmp VehicleSelectionScreen.States.ChooseCar.PrepareScreen
         }
 
         *= $7ad5
@@ -744,7 +744,7 @@
             sta ZeroPagePointer1
             sta ZeroPagePointer3
 
-            jsr TextViewShared.DeductMoney
+            jsr TextScreenShared.DeductMoney
             jsr label_983d
 
             lda #GameStates.MoveGhostsToOriginalPositions

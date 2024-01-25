@@ -567,7 +567,7 @@ LoadStraightToMapView:
     sta VIC_SCREEN_CONTROL_REGISTER_2
 
     // Render the car so it can be stored in $e000 when the city map loads
-    jsr StateDisplayEquipmentScreenCar.Render
+    jsr VehicleSelectionScreen.States.DisplayCar.Render
 
     //jsr ClearScreen
 
