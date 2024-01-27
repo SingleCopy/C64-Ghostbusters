@@ -9,9 +9,9 @@
 #import "GameMain.asm"
 #import "GameShared.asm"
 #import "GameData.asm"
-#import "Interrupts.asm"
 #import "SoundEffects.asm"
-#import "/Screens/TitleView/TitleViewInit.asm"
+#import "Interrupts.asm"
+#import "/Screens/MainTitleScreen/MainScreenInit.asm"
 #import "/Screens/TextScreens/TextScreenShared.asm"
 #import "/Screens/CityMapScreen/CityMapScreen.asm"
 #import "/Screens/DrivingScreen/DrivingScreen.asm"
@@ -159,9 +159,9 @@ ciaInit: {
 // Macros
 
 .macro ConfigureNMI() {
-    lda #<NMIVector
+    lda #<MainScreenInit.NMIVector
     sta NMI_ROM_VECTOR
-    lda #>NMIVector
+    lda #>MainScreenInit.NMIVector
     sta NMI_ROM_VECTOR + 1      //Set NMI Interrupt to $6425
     lda #<RasterInterrupt
     sta IRQ_ROM_VECTOR_LOW      // Set Interrupt address to $8E76
@@ -542,7 +542,7 @@ CreateReverseSprites:{
     lda #02
     sta VIC_BACKGROUND_COLOR_2
 
-    TitleScreenInit()
+    @TitleScreenInit();
 }
 
 // $61b2
@@ -852,13 +852,13 @@ SimpleReturn:
 *= $929C
 InitBallSpritePositionAndSoundMemoryLocation: {
     ldx #0
-    stx BALL_SPRITE_X
+    stx BallSpriteX
 
     ldx #$ba
-    stx BALL_SPRITE_Y
+    stx BallSpriteY
 
     ldx #0
-    stx BALL_SPRITE_EXTENDED_X
+    stx BallSpriteExtendedY
     stx $EA6B
     stx $EA71
 

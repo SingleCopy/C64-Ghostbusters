@@ -293,7 +293,7 @@
             beq label_786d
 
             ldy #$02
-            jsr PlaySoundEffect
+            jsr SoundEffects.PlaySoundEffect
             jmp label_78c1
 
             label_786d:

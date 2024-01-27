@@ -55,8 +55,8 @@ _91C8:
         cmp #$BF
         bne label_920b
         lda #$00
-        sta BALL_SPRITE_X
-        sta BALL_SPRITE_EXTENDED_X
+        sta BallSpriteX
+        sta BallSpriteExtendedY
 
     label_920b:
         and #$7f
@@ -84,41 +84,41 @@ _91C8:
     label_9235:
         lda BallSwingCurve, x
         clc
-        adc BALL_SPRITE_Y
-        sta BALL_SPRITE_Y
+        adc BallSpriteY
+        sta BallSpriteY
         inc $EA6B
         lda $EA6B
         and #$0F
         sta $EA6B
-        lda BALL_SPRITE_X
+        lda BallSpriteX
         clc
         adc $EA6C
-        sta BALL_SPRITE_X
+        sta BallSpriteX
 
-        lda BALL_SPRITE_EXTENDED_X
+        lda BallSpriteExtendedY
         adc #$00
-        sta BALL_SPRITE_EXTENDED_X
+        sta BallSpriteExtendedY
         beq label_926d
 
-        lda BALL_SPRITE_X
+        lda BallSpriteX
         cmp #$58
         bcc label_926d
         lda #$00
-        sta BALL_SPRITE_X
-        sta BALL_SPRITE_EXTENDED_X
+        sta BallSpriteX
+        sta BallSpriteExtendedY
 
     label_926d:
-        lda BALL_SPRITE_Y
+        lda BallSpriteY
         sta VIC_SPRITE_0_Y
         sta VIC_SPRITE_0_Y + 2
-        lda BALL_SPRITE_X
+        lda BallSpriteX
         sta VIC_SPRITE_0_X
         sta VIC_SPRITE_0_X + 2
 
         // set up extended x bit
-        lda BALL_SPRITE_EXTENDED_X
+        lda BallSpriteExtendedY
         asl
-        ora BALL_SPRITE_EXTENDED_X
+        ora BallSpriteExtendedY
         sta ZeroPagePointer1
         lda VIC_SPRITE_X_POS_EXTENDED
         and #$FC

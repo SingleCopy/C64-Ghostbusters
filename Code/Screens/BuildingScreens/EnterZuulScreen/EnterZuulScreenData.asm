@@ -7,6 +7,39 @@
 *= ENTER_ZUUL_CHARMAP "EnterZuulCharMap"
     .import binary "..\Content\Buildings\EnterZuulCharMap.bin"
 
+// screen offsets while scrolling up?
+*= $3456
+somedata_3456: 
+    .byte $27,$4F,$77
+
+//  ;chars for windows while scrolling up?
+*= $3459
+somedata_3459:          
+    .byte $4C,$4C,$4C,$4C,$4C
+    .byte $4C,$4C,$4C,$4C,$4C,$51,$51,$51
+    .byte $52,$53,$54,$52,$52,$53,$54,$52
+    .byte $52,$53,$54,$52,$52,$53,$54,$52
+    .byte $52,$53,$54,$52,$52,$53,$54,$52
+    .byte $52,$4C,$4C,$4C,$4C,$4C,$4C,$4C
+    .byte $4C,$4C,$4C,$4C,$4C,$51,$51,$51
+    .byte $52,$52,$52,$52,$52,$52,$52,$52
+    .byte $52,$52,$52,$52,$52,$52,$52,$52
+    .byte $52,$52,$52,$52,$52,$52,$52,$52
+    .byte $52,$4C,$4C,$4C,$4C,$4C,$4C,$4C
+    .byte $4C,$4C,$4C,$4C,$4C,$51,$51,$51
+    .byte $52,$5B,$54,$52,$52,$5B,$54,$52
+    .byte $52,$5B,$54,$52,$52,$5B,$54,$52
+    .byte $52,$5B,$54,$52,$52,$5B,$54,$52
+    .byte $52,$4C,$4C
+    
+COLOR_LOOKUP:   //;zuul house top colors? or window row while scrolling up?
+    .byte $0E,$0E,$0E,$0E,$0E
+    .byte $0E,$0E,$0E,$0E,$0E,$08,$08,$08
+    .byte $08,$0E,$08,$08,$08,$0E,$08,$08
+    .byte $08,$0E,$08,$08,$08,$0E,$08,$08
+    .byte $08,$0E,$08,$08,$08,$0E,$08,$08
+    .byte $08,$0E,$0E
+
 *= $a8a5
 LOOKUP_A8A5:
     .byte $6C,$6C,$6C,$66,$65,$64,$63,$63

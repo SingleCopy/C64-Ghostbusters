@@ -119,7 +119,7 @@
         sta LastKeyPressed
 
         lda #Speech.Ghostbusters
-        jsr TriggerSpeech
+        jsr SoundEffects.TriggerSpeech
     }
 
     *= $6396
@@ -250,7 +250,7 @@ PlayThemeTune:
           lsr $dc
     label_9481:
           lda $dc
-          sta SHADOW_SID_VOLUME
+          sta ShadowSIDVolume
           sta SID_VOICE_3_MAIN_VOLUME_CONTROL
           inc $85, x
           dey

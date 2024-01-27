@@ -75,3 +75,8 @@
     .label Laugh = $03;
     .label Scream = $04;
 }
+
+.namespace SoundEffect
+{
+
+}

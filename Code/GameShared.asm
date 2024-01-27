@@ -9,38 +9,6 @@ ResetVariablesToZero: // $3bdc
     rts
 }
 
-*= $3d24
-PlaySoundEffect: // $3d24
-{
-    txa
-    pha
-    lda $e8
-    bne continue
-    ldx #$01
-    stx $ea81
-    dex
-    stx SID_VOICE_3_PULSE_AD
-    stx SID_VOICE_3_PULSE_SVR
-    stx SID_VOICE_3_PULSE_WIDTH_HIGH
-    stx SID_VOICE_3_PULSE_WIDTH_LOW
-    stx SID_VOICE_3_CONTROL_REGISTER
-    stx $ea7d
-    stx $ea7e
-    stx $ea84
-    dex
-    stx $98
-    stx $ea80
-    lda SoundEffectsLow, y
-    sta $e7
-    lda SoundEffectsHigh, y
-    sta $e8
-    
-    continue:
-    pla
-    tax
-    rts
-}
-
 *= $73bd
 label_73bd:
 {

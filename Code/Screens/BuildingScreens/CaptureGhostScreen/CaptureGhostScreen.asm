@@ -289,7 +289,7 @@
             sta $31
             jsr ResetVariablesToZero
             ldy #$03
-            jsr PlaySoundEffect
+            jsr SoundEffects.PlaySoundEffect
             jmp NextGameState
 
             label_8682:
@@ -424,7 +424,7 @@
 
             // he slimed me
             lda #Speech.HeSlimedMe
-            jsr TriggerSpeech
+            jsr SoundEffects.TriggerSpeech
 
             label_874e:
             lda #GameStates.PrepareMapScreen
@@ -565,7 +565,7 @@
 
             // ghostbusters!
             lda #Speech.Ghostbusters
-            jsr TriggerSpeech
+            jsr SoundEffects.TriggerSpeech
 
             label_8823:
             lda ObjectPosX + 14

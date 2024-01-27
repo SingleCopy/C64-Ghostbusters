@@ -399,12 +399,12 @@ label_71f6:
         ldy #$08
         sty SID_VOICE_3_CONTROL_REGISTER
 
-        ldy SHADOW_SID_VOLUME
+        ldy ShadowSIDVolume
         cpy #$0f
         beq playPrinterBeep
 
         ldy #$0f
-        sty SHADOW_SID_VOLUME
+        sty ShadowSIDVolume
         sty SID_VOICE_3_MAIN_VOLUME_CONTROL
 
         playPrinterBeep:

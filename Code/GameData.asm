@@ -1,38 +1,5 @@
 #importonce
 
-// screen offsets while scrolling up?
-*= $3456
-somedata_3456: 
-    .byte $27,$4F,$77
-
-//  ;chars for windows while scrolling up?
-*= $3459
-somedata_3459:          
-    .byte $4C,$4C,$4C,$4C,$4C
-    .byte $4C,$4C,$4C,$4C,$4C,$51,$51,$51
-    .byte $52,$53,$54,$52,$52,$53,$54,$52
-    .byte $52,$53,$54,$52,$52,$53,$54,$52
-    .byte $52,$53,$54,$52,$52,$53,$54,$52
-    .byte $52,$4C,$4C,$4C,$4C,$4C,$4C,$4C
-    .byte $4C,$4C,$4C,$4C,$4C,$51,$51,$51
-    .byte $52,$52,$52,$52,$52,$52,$52,$52
-    .byte $52,$52,$52,$52,$52,$52,$52,$52
-    .byte $52,$52,$52,$52,$52,$52,$52,$52
-    .byte $52,$4C,$4C,$4C,$4C,$4C,$4C,$4C
-    .byte $4C,$4C,$4C,$4C,$4C,$51,$51,$51
-    .byte $52,$5B,$54,$52,$52,$5B,$54,$52
-    .byte $52,$5B,$54,$52,$52,$5B,$54,$52
-    .byte $52,$5B,$54,$52,$52,$5B,$54,$52
-    .byte $52,$4C,$4C
-
-COLOR_LOOKUP:   //;zuul house top colors? or window row while scrolling up?
-    .byte $0E,$0E,$0E,$0E,$0E
-    .byte $0E,$0E,$0E,$0E,$0E,$08,$08,$08
-    .byte $08,$0E,$08,$08,$08,$0E,$08,$08
-    .byte $08,$0E,$08,$08,$08,$0E,$08,$08
-    .byte $08,$0E,$08,$08,$08,$0E,$08,$08
-    .byte $08,$0E,$0E
-
 *= $371D
 VIC_INIT_VALUES:
     .byte $00,$00,$00,$00,$00,$00,$00,$00
@@ -155,32 +122,38 @@ TEXT_CROSSED_STREAMS:
     .text "YOU CROSSED THE STREAMS((( FORTUNATELY YOUR BACKPACKS SHORTED OUT IN TIME. GO BACK TO GHQ. " + @"\$ff"
 
 *= $3db4
-SoundEffectsLow: // $3d84
+SoundEffectsLow:
     .byte <SoundEffect1, <SoundEffect2, <SoundEffect3, <SoundEffect4, <SoundEffect5
 
-SoundEffectsHigh: // $3d89
+*= $3db9
+SoundEffectsHigh:
     .byte >SoundEffect1, >SoundEffect2, >SoundEffect3, >SoundEffect4, >SoundEffect5
 
-SoundEffect1: // $3dbe
+*= $3dbe
+SoundEffect1:
     .byte $05, $90, $F1, $95, $06
     .byte $40, $FC, $B1, $EC, $00
 
-SoundEffect2: // $3dc8
+*= $3dc8
+SoundEffect2:
     .byte $05, $90, $F8, $1B, $11
     .byte $17, $BC, $32, $43, $15
     .byte $AC
     .byte $95, $31, $00
 
-SoundEffect3: // $3dd6
+*= $3dd6
+SoundEffect3:
     .byte $05,$40,$44,$1B,$11
     .byte $17,$BC,$F2,$2D,$AC,$00
 
-SoundEffect4: // $3de1
+*= $3de1
+SoundEffect4:
     .byte $05,$40
     .byte $64,$95,$1B,$11,$27,$BC,$F2,$48
     .byte $AC,$00
 
-SoundEffect5: //$3ded
+*= $3ded
+SoundEffect5:
     .byte $05,$00,$F0,$FC,$27,$FA
     .byte $04,$0C,$31,$25,$FB,$EC
     .byte $00

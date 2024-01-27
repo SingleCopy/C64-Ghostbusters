@@ -394,7 +394,7 @@
             lda #$20
             sta $0075, y
             ldy #$00
-            jsr PlaySoundEffect
+            jsr SoundEffects.PlaySoundEffect
 
             label_821b:
             dex
@@ -707,7 +707,7 @@
         and #$bf
         sta $47
         bmi label_70ee
-        lda SHADOW_SID_VOLUME
+        lda ShadowSIDVolume
         sta SID_VOICE_3_MAIN_VOLUME_CONTROL
         jmp label_70ee
     }

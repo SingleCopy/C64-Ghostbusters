@@ -18,7 +18,7 @@
 
             // laugh
             lda #Speech.Laugh
-            jsr TriggerSpeech
+            jsr SoundEffects.TriggerSpeech
 
             continue:
             lda #$ff

@@ -1,3 +1,4 @@
+.label ProcessorPort    = $01
 .label ZeroPagePointer4 = $0b
 .label ZeroPagePointer5 = $0d
 .label ZeroPagePointer6 = $0f
@@ -65,6 +66,10 @@
 
 .label KeyboardEntryBuffer  = $ea00 // 20 chars
 .label AccountBalance       = $ea14
+.label BallSpriteX = $ea66
+.label BallSpriteY = $ea67
+.label BallSpriteExtendedY = $ea68
+.label ShadowSIDVolume    = $ea82
 .label LastMiniGameResult   = $ea7a // 0 = good, everything else bad
 .label AccountName          = $eab3 // 20 chars
 .label AccountNumber        = $eac7 // Account number, BCD encoded, 4 bytes, $eac7 to $eaca

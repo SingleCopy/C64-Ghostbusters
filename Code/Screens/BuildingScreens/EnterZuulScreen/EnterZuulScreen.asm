@@ -262,7 +262,7 @@
 
             // zuul scream
             lda #Speech.Scream
-            jsr TriggerSpeech
+            jsr SoundEffects.TriggerSpeech
             jmp NextGameState.ReturnToMainLoop
 
             label_8c60:
@@ -491,7 +491,7 @@
 
         // play laugh
         lda #Speech.Laugh
-        jsr TriggerSpeech
+        jsr SoundEffects.TriggerSpeech
 
         lda #$2f
         sta CountdownTimer

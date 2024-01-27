@@ -225,7 +225,7 @@ RasterInterrupt:
             lda #$01
             sta LoopTrigger
             jsr PlayThemeTune
-            jsr label_3be9
+            jsr SoundEffects.label_3be9
         }
     }
 }
