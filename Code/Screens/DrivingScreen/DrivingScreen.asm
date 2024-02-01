@@ -620,8 +620,8 @@
     label_7061:
     {
         jsr DisableKeyboardInterrupts
-        lda $02
-        cmp #$80
+        lda IsJoystickInputEnabled
+        cmp #JOYSTICK_INPUT_ENABLED
         beq label_7070
         lda #$1f
         sta JoystickValue
@@ -637,8 +637,8 @@
         bne label_708c
         lda #$02
         sta $20
-        lda #$80
-        sta $02
+        lda #JOYSTICK_INPUT_ENABLED
+        sta IsJoystickInputEnabled
         asl
         sta $03
         sta $04

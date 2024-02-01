@@ -1,6 +1,6 @@
 #importonce 
 #import "BuildingScreenSharedData.asm"
-#import "/CaptureGhostScreen/CaptureGhostScreen.asm"
+#import "/GhostbustingScreen/GhostbustingScreen.asm"
 #import "/GHQScreen/GHQScreen.asm"
 #import "/EnterZuulScreen/EnterZuulScreen.asm"
 

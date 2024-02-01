@@ -21,8 +21,8 @@
             jsr SoundEffects.TriggerSpeech
 
             continue:
-            lda #$ff
-            sta $02
+            lda #JOYSTICK_INPUT_DISABLED
+            sta IsJoystickInputEnabled
             jmp NextGameState
         }
 

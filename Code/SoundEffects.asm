@@ -455,9 +455,9 @@
         lsr
         bcs label_8e06
 
-        lda #<MainScreenInit.NMIVector
+        lda #<MainTitleScreenInit.NMIVector
         sta NMI_ROM_VECTOR
-        lda #>MainScreenInit.NMIVector
+        lda #>MainTitleScreenInit.NMIVector
         sta NMI_ROM_VECTOR + 1
 
         lda ShadowSIDVolume

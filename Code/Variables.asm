@@ -1,4 +1,5 @@
 .label ProcessorPort    = $01
+.label IsJoystickInputEnabled = $02
 .label ZeroPagePointer4 = $0b
 .label ZeroPagePointer5 = $0d
 .label ZeroPagePointer6 = $0f

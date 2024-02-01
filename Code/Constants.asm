@@ -1,6 +1,8 @@
 .const FIRE_BUTTON_MASK = $10 // Checks the 4th bit is set
 .const PKE_INCREASE_RATE = 9
 .const MINIMUM_REQUIRED_GHOSTBUSTERS = 2
+.const JOYSTICK_INPUT_ENABLED = $80
+.const JOYSTICK_INPUT_DISABLED = $ff
 
 .const ZUUL_CHARSET = $0f80
 .const BUILDING_CHARSET = $1fa8
@@ -65,7 +67,16 @@
 
 .namespace ScrollerText
 {
-
+    .label NoEmptyTraps = $00;
+    .label NoGhostbustersAvailable = $01;
+    .label NoGhostBaitRemaining = $02;
+    .label BackpacksDischarged = $03;
+    .label MarshmallowManAlert = $04;
+    .label MarshmallowManDamage = $05;
+    .label MarshmallowManReward = $06;
+    .label CarFull = $07;
+    .label YouCrossedTheStreams = $08;
+    .label GotoZuul = $09;
 }
 
 .namespace Speech

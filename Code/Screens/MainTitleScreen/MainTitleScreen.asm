@@ -475,8 +475,8 @@ LoadStraightToMapView:
     sta ZeroPage0
     lda #$15
     sta ZeroPage1
-    lda #$80
-    sta $02
+    lda #JOYSTICK_INPUT_ENABLED
+    sta IsJoystickInputEnabled
     lda #$0a
     sta $06
     lda #$cb

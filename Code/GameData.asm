@@ -35,18 +35,18 @@ TableGameStates:
     .word DrivingScreen.States.LoadCharData         // x13
     .word DrivingScreen.States.SetSpritePositions   // x14
     .word DrivingScreen.States.DrivingToTarget      // x15
-    .word CaptureGhostScreen.States.Init            // x16
+    .word GhostbustingScreen.States.Init            // x16
     .word BuildingScreenShared.States.LoadBuildingGraphics  // x17
-    .word CaptureGhostScreen.States.PlaceTrap               // x18
-    .word CaptureGhostScreen.States.PlaceFirstGhostbuster   // x19
-    .word CaptureGhostScreen.States.PlaceSecondGhostbuster  // x1a
-    .word CaptureGhostScreen.States.ActivateProtonStreams   // x1b
-    .word CaptureGhostScreen.States.OpenTrap                // x1c
-    .word CaptureGhostScreen.States.GhostCaptureFailed      // x1d
-    .word CaptureGhostScreen.States.GhostCaptureSuccessful  // x1e
-    .word CaptureGhostScreen.States.CaptureGhostInTrap      // x1f
-    .word CaptureGhostScreen.States.MoveGhostbustersTowardsTrap         // x20 (32) => 64
-    .word CaptureGhostScreen.States.PickUpTrap              // x21
+    .word GhostbustingScreen.States.PlaceTrap               // x18
+    .word GhostbustingScreen.States.PlaceFirstGhostbuster   // x19
+    .word GhostbustingScreen.States.PlaceSecondGhostbuster  // x1a
+    .word GhostbustingScreen.States.ActivateProtonStreams   // x1b
+    .word GhostbustingScreen.States.OpenTrap                // x1c
+    .word GhostbustingScreen.States.GhostCaptureFailed      // x1d
+    .word GhostbustingScreen.States.GhostCaptureSuccessful  // x1e
+    .word GhostbustingScreen.States.CaptureGhostInTrap      // x1f
+    .word GhostbustingScreen.States.MoveGhostbustersTowardsTrap         // x20 (32) => 64
+    .word GhostbustingScreen.States.PickUpTrap              // x21
     .word GHQScreen.States.Init                            // x22
     .word GHQScreen.States.MoveGhostbustersFromGHQToCar     // x23
     .word CityMapScreen.States.MashmallowManAttackIncoming  // x24
@@ -175,11 +175,9 @@ RAINBOW_COLORS:
 *= $b408 "SpritesData" // Add sprite data at the $B400 memory location
     .import binary "..\Content\SpritesData.bin", 8 // Skip the first 8 bytes as this is added by spritepad
 
-*= $d000 "TitleScreenCharset" // Add character data at the $D000 memory location
-    .import binary "..\Content\TitleScreenCharset.bin"
-
-*= $6960 "UnknownData2" 
-     .import binary "..\Content\UnknownData2.bin"
+// .const CHARACTER_SET = $d000;
+// *= CHARACTER_SET  "CharacterSet" // Add character data at the $D000 memory location
+//     .import binary "..\Content\CharacterSet.bin"
 
 //==============================================================================
 

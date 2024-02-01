@@ -1,7 +1,7 @@
 #importonce 
-#import "CaptureGhostScreenData.asm"
+#import "GhostbustingScreenData.asm"
 
-.namespace CaptureGhostScreen
+.namespace GhostbustingScreen
 {
     .namespace States
     {
@@ -254,7 +254,7 @@
             jsr ResetVariablesToZero
 
             // crossed streams
-            ldx #$08
+            ldx #ScrollerText.YouCrossedTheStreams
             jsr FetchScrollerText
 
             lda #$18
@@ -308,7 +308,7 @@
             bne return
 
             // backpacks discharged
-            ldx #$03
+            ldx #ScrollerText.BackpacksDischarged
             jsr FetchScrollerText
             jmp label_8667
 
@@ -669,7 +669,7 @@
     *= $8701
     MoveGhostToGhostbuster:
     {
-        jmp CaptureGhostScreen.States.GhostCaptureFailed.SlimeGhostbuster
+        jmp GhostbustingScreen.States.GhostCaptureFailed.SlimeGhostbuster
     }
 
     *= $98eb
@@ -947,7 +947,7 @@
         pla
         lda #GameStates.CaptureGhost_CaptureGhostInTrap
         sta GameState
-        jmp CaptureGhostScreen.States.CaptureGhostInTrap.label_8823
+        jmp GhostbustingScreen.States.CaptureGhostInTrap.label_8823
 
         return:
         rts

@@ -1,9 +1,9 @@
 #importonce 
-#import "MainScreenData.asm"
-#import "MainScreenShared.asm"
-#import "MainScreen.asm"
+#import "MainTitleScreenData.asm"
+#import "MainTitleScreenShared.asm"
+#import "MainTitleScreen.asm"
 
-.namespace MainScreenInit
+.namespace MainTitleScreenInit
 {
     *= $62eb
     .macro @TitleScreenInit()

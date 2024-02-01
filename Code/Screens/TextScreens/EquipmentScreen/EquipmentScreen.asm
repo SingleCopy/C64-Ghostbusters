@@ -382,7 +382,7 @@
             bcc CanStoreEquipment
 
             // car is full
-            ldx #$07
+            ldx #ScrollerText.CarFull
             jsr FetchScrollerText
             jmp CannotPutEquipmentInCar
 

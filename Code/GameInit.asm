@@ -11,7 +11,7 @@
 #import "GameData.asm"
 #import "SoundEffects.asm"
 #import "Interrupts.asm"
-#import "/Screens/MainTitleScreen/MainScreenInit.asm"
+#import "/Screens/MainTitleScreen/MainTitleScreenInit.asm"
 #import "/Screens/TextScreens/TextScreenShared.asm"
 #import "/Screens/CityMapScreen/CityMapScreen.asm"
 #import "/Screens/DrivingScreen/DrivingScreen.asm"
@@ -111,7 +111,6 @@ InitialCleanArea:
 *= $6000 "Code"
 GameMainInit:
 {
-    .break
     sei
     ldx #$ff
     txs
@@ -126,16 +125,17 @@ GameMainInit:
     ClearScreenAndCharset()
     UnknownDataWrite_E700ToE7FF()
     UnknownDataWrite_E600ToE6FF()
-    CopyCharsetToVIC()
-    CopyActivisionLogoToVIC()
+    CopyTitleScreenCharDataToScreenRam()
+    CopyActivisionLogoToScreenRam()
     ClearMemoryLocations()
     UnknownDataWrite_EB00ToEB78()
-    CopySpriteDataToVIC()
+    CopySpriteDataToScreenRam()
 }
 
 *= $8FD8 "ciaInit"
 //.segment BANK1 [start=$8fd8]
-ciaInit: {
+ciaInit: 
+{
     lda #$7f
     sta CIA1_INTERRUPT_CONTROL
     sta CIA2_INTERRUPT_CONTROL
@@ -158,10 +158,11 @@ ciaInit: {
 //==============================================================================
 // Macros
 
-.macro ConfigureNMI() {
-    lda #<MainScreenInit.NMIVector
+.macro ConfigureNMI() 
+{
+    lda #<MainTitleScreenInit.NMIVector
     sta NMI_ROM_VECTOR
-    lda #>MainScreenInit.NMIVector
+    lda #>MainTitleScreenInit.NMIVector
     sta NMI_ROM_VECTOR + 1      //Set NMI Interrupt to $6425
     lda #<RasterInterrupt
     sta IRQ_ROM_VECTOR_LOW      // Set Interrupt address to $8E76
@@ -173,7 +174,8 @@ ciaInit: {
     sta ZeroPage0 
 }
 
-.macro ConfigureVIC(){
+.macro ConfigureVIC()
+{
     ldx #$2e
     spriteInitLoop:         // Update VIC registers $D02E to $D000
     {
@@ -184,14 +186,16 @@ ciaInit: {
     }
 }
 
-.macro ConfigureCia2DataPortA() {
+.macro ConfigureCia2DataPortA() 
+{
     lda CIA2_DATA_PORT_A
     and #$fc
     ora #$02
     sta CIA2_DATA_PORT_A    // set to 10000000
 }
 
-.macro ClearRemainingZeroPageData() {
+.macro ClearRemainingZeroPageData()
+{
     lda #0
     tax
     clearRemainingZeroPageData: // Clear memory from $0002 to $00FE
@@ -222,7 +226,8 @@ ciaInit: {
     }
 }
 
-.macro UnknownDataWrite_E700ToE7FF() {
+.macro UnknownDataWrite_E700ToE7FF() 
+{
     ldx #0
     unknownloop1:    // Writes data from $E700 to $E7FF, maybe map data?
     {
@@ -247,9 +252,10 @@ ciaInit: {
     }
 }
 
-.macro UnknownDataWrite_E600ToE6FF() {
+.macro UnknownDataWrite_E600ToE6FF() 
+{
     ldx #0
-    unkownLoop1:
+    loop:
     {
         stx $23
         txa
@@ -263,11 +269,12 @@ ciaInit: {
         ora $23
         sta $E600,x
         inx
-        bne unkownLoop1
+        bne loop
     }
 }
 
-.macro CopyCharsetToVIC(){
+.macro CopyTitleScreenCharDataToScreenRam()
+{
     // Copies the charset from $D000 - $D3FF to $5800 - $5BFF
     lda $01
     and #$fb
@@ -296,7 +303,8 @@ ciaInit: {
     bpl loop
 }
 
-.macro CopyActivisionLogoToVIC() {
+.macro CopyActivisionLogoToScreenRam() 
+{
     // Copies the activision charset from $36A4-$374B to $58D8-$5957
     lda $01
     ora #$04
@@ -358,20 +366,20 @@ ciaInit: {
 
 }
 
-.macro CopySpriteDataToVIC()
+.macro CopySpriteDataToScreenRam()
 {
     // Sprite data starts at $B408
     .label SpriteDataEndAddress = $0B
     .label SpriteDataStartAddress = $0C
 
     // Sprite data starts at $4000
-    .label VicDataEndAddress = $23
-    .label VicDataStartAddress = $24
+    .label ScreenRamDataEndAddress = $23
+    .label ScreenRamDataStartAddress = $24
 
     lda #00
-    sta VicDataEndAddress
+    sta ScreenRamDataEndAddress
     lda #$40
-    sta VicDataStartAddress
+    sta ScreenRamDataStartAddress
     lda #$08
     sta SpriteDataEndAddress
     lda #$b4
@@ -387,14 +395,14 @@ ciaInit: {
         bcc copyData
         jmp CreateReverseSprites // Might be a good place to move to gameTitleScreen
   
-        copyData: // $611A
+        copyData: // $611a
         {
             lda (SpriteDataEndAddress),y 
             cmp #$11 // If we read a 11, then the next byte is how many bytes to skip before the start of the next sprite
             beq loadSpriteData
-            sta (VicDataEndAddress),y
-            jsr IncrementSpriteAddress
-            jsr IncrementVicAddress
+            sta (ScreenRamDataEndAddress),y
+            jsr incrementSpriteAddress
+            jsr incrementScreenRamAddress
             jmp loop
 
             loadSpriteData: // $612B
@@ -404,22 +412,22 @@ ciaInit: {
             lda #00
             tay
 
-            StoreSpriteData:  // $6132
+            storeSpriteData:  // $6132
             {
-                sta (VicDataEndAddress),y
-                jsr IncrementVicAddress
+                sta (ScreenRamDataEndAddress),y
+                jsr incrementScreenRamAddress
                 dex
-                bne StoreSpriteData
+                bne storeSpriteData
             }
 
-            jsr IncrementSpriteAddress
-            jsr IncrementSpriteAddress
+            jsr incrementSpriteAddress
+            jsr incrementSpriteAddress
             jmp loop
         }
     }
 
     // $6143
-    IncrementSpriteAddress:
+    incrementSpriteAddress:
     {
         inc SpriteDataEndAddress 
         bne return
@@ -430,11 +438,11 @@ ciaInit: {
     }
 
     // $614A
-    IncrementVicAddress:
+    incrementScreenRamAddress:
     {
-        inc VicDataEndAddress
+        inc ScreenRamDataEndAddress
         bne return
-        inc VicDataStartAddress
+        inc ScreenRamDataStartAddress
 
         return:
         rts
@@ -442,7 +450,8 @@ ciaInit: {
 }
 
 *= $6151 "CreateReverseSprites"
-CreateReverseSprites:{
+CreateReverseSprites:
+{
     ldx #$fc
 
     loop: 
@@ -491,7 +500,7 @@ CreateReverseSprites:{
 
     WriteTo5500AndD800()
     WriteToD850_D8C7()
-    CopyTitleCharsToVIC()
+    CopyTitleScreenCharSetToScreenRam()
     DrawGhostbustersTitle()
     LoadMoreDataTo_54FB_56C4()
     WriteDataTo_DB20_DB97_and_DBC0_DBE7()
@@ -588,51 +597,65 @@ CreateReverseSprites:{
     }
 }
 
-.macro CopyTitleCharsToVIC(){
-    // Load data from $6960-$6F5F to $5A00-$5FFF
+.macro CopyTitleScreenCharSetToScreenRam()
+{
+    // Load data from $6960-$6f5f to $5a00-$5fff
+
+    // Title Screen CharMap data starts at $6960
+    .label CharMapEndAddress = $25
+    .label CharMapStartAddress = $26
+
+    // Title Screen CharMap data starts at $5400
+    .label ScreenRamDataEndAddress = $23
+    .label ScreenRamDataStartAddress = $24
+
     lda #0
-    sta $23
+    sta ScreenRamDataEndAddress
     lda #$5a
-    sta $24
+    sta ScreenRamDataStartAddress
     lda #$60
-    sta $25
+    sta CharMapEndAddress
     lda #$69
-    sta $26
+    sta CharMapStartAddress
     
     ldx #$05
     ldy #0
-
-    loop: {
-        lda ($25),y
-        sta ($23),y
+    loop: 
+    {
+        lda (CharMapEndAddress),y
+        sta (ScreenRamDataEndAddress),y
         dey
         bne loop
+    
+        inc ScreenRamDataStartAddress
+        inc CharMapStartAddress
+        dex
+        bpl loop
     }
-    inc $24
-    inc $26
-    dex
-    bpl loop
 }
 
-.macro DrawGhostbustersTitle() { // 61fa
+ // $61fa
+.macro DrawGhostbustersTitle() 
+{
     ldx #$1d
     loop:
     {
-        lda $6EB0,x
-        sta $5455,x
+        lda $6eb0, x
+        sta $5455, x
+        
+        lda $6ece, x
+        sta $547d, x
 
-        lda $6ECE,x
-        sta $547D,x
-
-        lda $6EEC,x
-        sta $54A5,x
+        lda $6eec, x
+        sta $54a5, x
 
         dex
         bpl loop
     }
 }
 
-.macro LoadMoreDataTo_54FB_56C4(){
+.macro LoadMoreDataTo_54FB_56C4()
+{
     // Write data from $6F0A-6FE1 to $54FB-$56C4, with gaps inbetween
     lda #$0a
     sta $23
@@ -850,7 +873,8 @@ SimpleReturn:
 }
 
 *= $929C
-InitBallSpritePositionAndSoundMemoryLocation: {
+InitBallSpritePositionAndSoundMemoryLocation: 
+{
     ldx #0
     stx BallSpriteX
 
@@ -889,7 +913,8 @@ ClearMemory_0082_008A: {
 }
 
 *= $95b9 "ClearScreen"
-ClearScreen: {
+ClearScreen: 
+{
     ldx #0
     lda #0
 
@@ -926,10 +951,3 @@ ClearScreen: {
     return:
     rts
 }
-
-
-//==============================================================================
-// Update
-
-// gameMainUpdate:
-//     jmp gameMainUpdate      // Jump back, infinite loop

@@ -317,7 +317,7 @@
             sta CountdownTimer
 
             // go to zuul
-            ldx #$09
+            ldx #ScrollerText.GotoZuul
             jsr FetchScrollerText
 
             lda #$63
@@ -734,7 +734,7 @@
             bne label_8990
 
             // marshmallow man damage
-            ldx #$05
+            ldx #ScrollerText.MarshmallowManDamage
             jsr FetchScrollerText
 
             // deduct $4000
@@ -811,7 +811,7 @@
             lda CountdownTimer
             bne label_8a00
 
-            ldx #$06
+            ldx #ScrollerText.MarshmallowManReward
             jsr FetchScrollerText
 
             // award $2000
@@ -1036,7 +1036,7 @@
         bne label_7ea9
 
         // no empty traps
-        ldx #$00
+        ldx #ScrollerText.NoEmptyTraps
         jsr FetchScrollerText
         jmp NextGameState.ReturnToMainLoop
 
@@ -1046,7 +1046,7 @@
         bcs checkBackbackCharge // We have enough ghostbusters, now  check the backpack charge
 
         // not enough ghostbusters available
-        ldx #$01
+        ldx #ScrollerText.NoGhostbustersAvailable
         jsr FetchScrollerText
         jmp NextGameState.ReturnToMainLoop
 
@@ -1055,7 +1055,7 @@
         bne label_7ec3
 
         // backpacks discharged
-        ldx #$03
+        ldx #ScrollerText.BackpacksDischarged
         jsr FetchScrollerText
         jmp NextGameState.ReturnToMainLoop
 
@@ -1114,7 +1114,8 @@
         lda #$00
         sta $68
 
-        ldx #$04
+        // Marshmallow Man Alart
+        ldx #ScrollerText.MarshmallowManAlert
         jsr FetchScrollerText
         lda #GameStates.MashmallowManAttackIncoming
         sta GameState
@@ -1176,7 +1177,7 @@
         bne useGhostBait
 
         // sorry, no bait
-        ldx #$02
+        ldx #ScrollerText.NoGhostBaitRemaining
         jsr FetchScrollerText
         jmp returnToMainLoop
 

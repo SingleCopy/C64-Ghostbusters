@@ -1,4 +1,4 @@
-*= $3624 "TEXT_TITLE_SCROLLER"
+*= $3624 "TitleTextScroller"
 TEXT_TITLE_SCROLLER:
  .text "       "
  .byte $5B, $5C, $5D, $5E, $5F, $60, $61, $62   //activision logo
@@ -86,6 +86,16 @@ Data_68F0:
     .byte $D4, $00, $73, $D5, $00, $76, $D4, $00
     .byte $76, $D5, $00, $75, $D4, $00, $00, $00
     .byte $00, $00, $00, $00, $00
+
+// Skip the standard ASCII charset when loading the TitleScreenCharSet
+*= $6960 "TitleScreenCharSet"  
+    .import binary "..\Content\TitleScreen\TitleScreenCharSet.bin", $200, $550
+
+*= $6eb0 "GhostbustersTitleCharMap" 
+    .import binary "..\Content\TitleScreen\GhostbustersTitleCharMap.bin"
+
+*= $6f0a "GhostbustersLogoCharMap" 
+    .import binary "..\Content\TitleScreen\GhostbustersLogoCharMap.bin"
 
 *= $8EA7
 BallSwingCurve:
