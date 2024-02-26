@@ -2,6 +2,38 @@
 MAP_CHARSET:
     .import binary "..\Content\CityMapData.bin"
 
+*= $3a04
+TEXT_CITY_PK_ENERGY:
+    .text "CITY'S PK ENERGY: "
+
+*= $3a16
+TEXT_NO_EMPTY_TRAPS:
+    .text "YOU HAVE NO EMPTY TRAPS. GO BACK TO GHQ. " + @"\$ff"
+
+*= $3a40
+TEXT_NO_BACKUP_MEN:
+    .text "YOUR BACKUP MEN ARE ALL OUT OF ACTION. GO BACK TO GHQ. " + @"\$ff"
+
+*= $3a78
+TEXT_SORRY_NO_BAIT:
+    .text "SORRY, NO BAIT. " + @"\$ff"
+
+*= $3a89
+TEXT_BACKPACKS_DISCHARGED:
+    .text "BACKPACKS DISCHARGED. GO BACK TO GHQ. " + @"\$ff"
+
+*= $3ab0
+TEXT_MARSHMALLOW_ALERT:
+    .text "-MARSHMALLOW ALERT- " + @"\$ff"
+
+*= $3ac5
+TEXT_MARSHMALLOW_MAN_DAMAGE:
+    .text "MARSHMALLOW MAN DID $4000 WORTH OF DAMAGE. THAT AMOUNT WILL BE DEDUCTED FROM YOUR BALANCE. " + @"\$ff"
+
+*= $3b21
+TEXT_MARSHMALLOW_REWARD:
+    .text "MAYOR AWARDS YOU $2000 FOR AVERTING MARSHMALLOW CATASTROPHE. " + @"\$ff"
+
 *= $3767
 STREET_NAME_1:
     .byte $6E,$6F,$70,$71,$72,$73,$74,$75,$76,$6D,$77
@@ -16,9 +48,6 @@ STREET_NAME_4:
 LOOKUP_3793:
     .byte $04, $05, $07, $06, $08, $09, $08, $09
 
-// Unknoiwn bytes starting at 37A3
-//.byte $00,$00,$00,$00,$00,$00,$00,$00
-//.byte $36,$00,$6D,$00,$6D,$00,$36,$00
 
 // sprite positions (16 bytes) (x, y)
 *= $37a3
@@ -68,6 +97,7 @@ MAP_STREET_NAMES_TOP:
     .byte $67,$68,$69,$6A,$5E,$A9,$59,$6B
     .byte $6C,$69,$6A,$5E,$A9,$A9,$A9
 
+*= $3f2d
 MAP_HOUSE_BLOCKS:
     .byte $44,$45,$46,$47,$48,$49,$4a,$4b
     .byte $4c,$4d,$4e,$4f,$50,$51,$52,$53
@@ -86,22 +116,11 @@ MAP_HOUSE_BLOCKS:
     .byte $a9,$ac,$ef,$f3,$f4,$f5,$f6,$f7
     .byte $df,$e0,$e1,$e2,$e3,$e9,$ea,$eb
     .byte $ec,$ed,$f0,$f1,$f1,$f2,$c2,$f8
-    .byte $f9,$f9,$fa,$fb,$42,$41,$43,$4b
-    .byte $50,$41,$43,$4b,$20,$50,$4f,$57
-    .byte $45,$52,$20,$41,$54,$20,$58,$58
-    .byte $25,$20,$4f,$46,$20,$4d,$41,$58
-    .byte $49,$4d,$55,$4d,$2e,$2e,$2e,$20
-    .byte $58,$20,$45,$4d,$50,$54,$59,$20
-    .byte $54,$52,$41,$50,$53,$2e,$2e,$2e
-    .byte $20,$58,$20,$4d,$45,$4e,$20,$4c
-    .byte $45,$46,$54,$2e,$2e,$2e,$20,$ff
-    .byte $ff,$aa,$aa
+    .byte $f9,$f9,$fa,$fb
 
-*= $3a04
-TEXT_CITY_PK_ENERGY:
-    .text "CITY'S PK ENERGY: "
-
-
+*= $3fb9
+TEXT_GHOSTBUSTERS_STATUS:
+    .text "BACKPACK POWER AT " + @"\$58\$58" + "% OF MAXIMUM... " + @"\$58" + " EMPTY TRAPS... " + @"\$58" + " MEN LEFT... " + @"\$ff\$ff\$aa\$aa"
 
 *= $a855
 LOOKUP_A855:

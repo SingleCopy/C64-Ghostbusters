@@ -25,17 +25,18 @@ CAR4_SIDEVIEW_CHARSET:
 *= BUILDING_CHARSET "BuildingCharset"
     .import binary "..\Content\Buildings\BuildingCharset.bin"
 
-*= CAR_SIDEVIEW_CHARMAP "Car1SideViewCharMap"
-    .import binary "..\Content\Buildings\Car1SideView\Car1SideViewCharMap.bin"
+// Think this is top down car data? Or the Map
+// *= CAR_SIDEVIEW_CHARMAP "Car1SideViewCharMap"
+//     .import binary "..\Content\Buildings\Car1SideView\Car1SideViewCharMap.bin"
 
-*= CAR_SIDEVIEW_CHARMAP + $300 "Car2SideViewCharMap"
-    .import binary "..\Content\Buildings\Car2SideView\Car2SideViewCharMap.bin"
+// *= CAR_SIDEVIEW_CHARMAP + $300 "Car2SideViewCharMap"
+//     .import binary "..\Content\Buildings\Car2SideView\Car2SideViewCharMap.bin"
 
-*= CAR_SIDEVIEW_CHARMAP + $600 "Car3SideViewCharMap"
-    .import binary "..\Content\Buildings\Car3SideView\Car3SideViewCharMap.bin"
+// *= CAR_SIDEVIEW_CHARMAP + $600 "Car3SideViewCharMap"
+//     .import binary "..\Content\Buildings\Car3SideView\Car3SideViewCharMap.bin"
 
-*= CAR_SIDEVIEW_CHARMAP + $800 "Car4SideViewCharMap"
-    .import binary "..\Content\Buildings\Car4SideView\Car4SideViewCharMap.bin"
+// *= CAR_SIDEVIEW_CHARMAP + $800 "Car4SideViewCharMap"
+//     .import binary "..\Content\Buildings\Car4SideView\Car4SideViewCharMap.bin"
 
 *= $375f
 CAR_SIDEVIEW_CHARSETS:

@@ -19,6 +19,7 @@ TEXT_HIGH_PERFORMANCE:
     .text "   CARRIES 7 ITEMS OF CARGO" + @"\$0d"
     .text "   TOP SPEED 160 MPH" + @"\$0d\$ff"
 
+
 *=$a1d4
 CAR_PRICE_LOW:
     .byte $20, $48, $60, $50
@@ -38,6 +39,13 @@ EQUIPMENT_PRICES:
 *=$a89d
 CAR_MULTICOLOR:
     .byte $03, $06, $06, $04
+
+*=$aaff // Each car graphic uses $2ff of bytes
+CAR_GRAPHIC_ADDRESS_HIGH:
+    .byte $02, $05, $08, $0B
+    
+CAR_GRAPHIC_ADDRESS_LOW:
+    .byte $00, $00, $00, $00
 
 *= $acc9
 TEXT_VEHICLE_SELECTION:

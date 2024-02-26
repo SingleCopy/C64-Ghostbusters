@@ -172,9 +172,9 @@ PlayThemeTune:
         lda $08
         and #$03
         bne label_941d
-        lda LOOKUP_A2B7_LO, x
+        lda SoundEffects.LOOKUP_A2B7_LO, x
         sta ZeroPagePointer7
-        lda LOOKUP_A2BA_HI, x
+        lda SoundEffects.LOOKUP_A2BA_HI, x
         sta ZeroPagePointer7 + 1
         lda $88, x
         bmi label_941a

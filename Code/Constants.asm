@@ -10,10 +10,12 @@
 .const BUILDING_CHARMAP = $1f00
 .const ENTER_ZUUL_CHARMAP = $2698
 .const CAR_SIDEVIEW_CHARMAP = $5000
-
+//.const ACTIVISION_CHARSET = $36a4
 .const BUILDING_2_CHARMAP = $9f2c
 .const BUILDING_3_CHARMAP = $a008
 .const BUILDING_4_CHARMAP = $a0e4
+
+.const FORMATTED_SCROLLER_TEXT = $e900
 
 .namespace GameStates
 {

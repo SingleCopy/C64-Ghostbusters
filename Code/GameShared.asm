@@ -222,7 +222,7 @@ FetchScrollerText:
         sbc #$40
 
         NoCharOverflow:
-        sta $e900, x
+        sta FORMATTED_SCROLLER_TEXT, x
 
         inc $4a
         iny
@@ -231,7 +231,7 @@ FetchScrollerText:
     }
 
     EndOfText:
-    sta $e900, x
+    sta FORMATTED_SCROLLER_TEXT, x
     lda #$01
     sta $4b
 

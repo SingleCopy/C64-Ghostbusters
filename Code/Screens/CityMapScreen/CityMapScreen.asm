@@ -88,17 +88,18 @@
                 bne colorLoop
             }
 
+            // draw the buildings
             ldx #$1d
-            outerLoop:
+            drawBuildingsOuterLoop:
             {
                 ldy #$03
-                innerLoop:
+                buildingColumnLoop:
                 {
                     jsr DrawMapBuilding
                     dey
-                    bpl innerLoop
+                    bpl buildingColumnLoop
                     dex
-                    bpl outerLoop
+                    bpl drawBuildingsOuterLoop
                 }
             }
 
@@ -172,7 +173,8 @@
 
             ldx #$07
             
-            drawObjectsLoop:
+            // Set all sprites used in the city map
+            setSpritePositionsLoop:
             {
                 lda $c0, x
                 sta $2b, x
@@ -185,7 +187,7 @@
                 lda $37cb, x
                 sta ObjectPosX2 + 8, x
                 dex
-                bpl drawObjectsLoop
+                bpl setSpritePositionsLoop
             }
 
             jmp NextGameState

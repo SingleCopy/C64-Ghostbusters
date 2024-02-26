@@ -15,7 +15,7 @@
             "**/.source.txt": true,
             "**/Output": true
         },
-        "kickassembler.debuggerOptions": "-wait 5000 -autojmp",
-        "kickassembler.startup": "Code\\gameInit.asm"
+        "kickassembler.debugger.options": "-wait 3000 -autojmp",
+        "kickassembler.startup": "Code\\GameInit.asm"
     }
 }

@@ -146,7 +146,7 @@ label_7106:
     ldx #$00
     lda LastKeyPressed
     sta $29
-    cmp #$20
+    cmp #' '    // Has the spacebar been pressed?
     bne label_71c1
     inc $4c
     lda #$00
@@ -155,16 +155,16 @@ label_7106:
 
     label_7198:
     cpy $4b
-    bcs label_71a4
+    bcs displayGhostbustersStatusText
     lda #$00
-    sta $e900, y
+    sta FORMATTED_SCROLLER_TEXT, y
     iny
     bne label_7198
 
-    label_71a4:
-    lda $3fb9, x
-    cmp #$ff
-    beq label_71c4
+    displayGhostbustersStatusText: // $71a4
+    lda TEXT_GHOSTBUSTERS_STATUS, x
+    cmp #$ff                    // Check for the end character
+    beq GhostbustersStatusTextEnd
     cmp #$20
     bne label_71b1
     lda #$00
@@ -175,20 +175,20 @@ label_7106:
     sbc #$40
 
     label_71b7:
-    sta $e900, y
+    sta FORMATTED_SCROLLER_TEXT, y
     inc $4a
     inx
     iny
-    jmp label_71a4
+    jmp displayGhostbustersStatusText
 
     label_71c1: 
     jmp label_71f6
 }
 
 *= $71c4 "label_71c4"
-label_71c4:
+GhostbustersStatusTextEnd:
 {
-    sta $e900, y
+    sta FORMATTED_SCROLLER_TEXT, y
     lda $4b
     bne label_71cd
     inc $4b
@@ -244,7 +244,7 @@ label_71f6:
     loop:
     {
         lda $e928, x
-        sta $e900, x
+        sta FORMATTED_SCROLLER_TEXT, x
         cmp #$ff
         beq label_7229
         inx

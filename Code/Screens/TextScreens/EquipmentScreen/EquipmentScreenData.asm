@@ -1,3 +1,7 @@
+*= $3b5f
+TEXT_CAR_FULL:
+    .text "YOUR CAR IS LOADED TO CAPACITY. " + @"\$ff"
+    
 *= $add2
 TEXT_MONITORING_EQUIPMENT:
     .text "MONITORING EQUIPMENT:" + @"\$0d"

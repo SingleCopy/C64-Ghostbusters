@@ -3,6 +3,8 @@
 //==============================================================================
 
 // Includes
+#importonce 
+
 #import "../Library/libDefines.asm"
 #import "Constants.asm"
 #import "Variables.asm"
@@ -312,8 +314,8 @@ ciaInit:
     ldx #0
     loop: 
     {
-        lda $36A4,x
-        sta $58D8,x
+        lda ACTIVISION_CHARSET, x
+        sta $58d8, x
         inx
     }
     bpl loop
@@ -329,7 +331,8 @@ ciaInit:
     }
 }
 
-.macro ClearMemoryLocations(){
+.macro ClearMemoryLocations()
+{
     // Clear 255 bytes from each of these memory locations
     ldx #0
     lda #0
@@ -352,7 +355,8 @@ ciaInit:
     }
 }
 
-.macro UnknownDataWrite_EB00ToEB78(){
+.macro UnknownDataWrite_EB00ToEB78()
+{
     ldx #$78
     lda #$ff
     sta $EB00,x // set $EB78 to ff
@@ -456,29 +460,29 @@ CreateReverseSprites:
 
     loop: 
     {
-        ldy $4640,x
-        lda $E700,y
-        sta $4F02,x
-
-        ldy $4641,x
-        lda $E700,y
-        sta $4F01,x
-
-        ldy $4642,x
-        lda $E700,y
-        sta $4F00,x
-
-        ldy $4740,x
-        lda $E700,y
-        sta $5002,x
-
-        ldy $4741,x
-        lda $E700,y
-        sta $5001,x
-
-        ldy $4742,x
-        lda $E700,y
-        sta $5000,x
+        ldy $4640, x
+        lda $E700, y
+        sta $4F02, x
+ 
+        ldy $4641, x
+        lda $E700, y
+        sta $4F01, x
+ 
+        ldy $4642, x
+        lda $E700, y
+        sta $4F00, x
+ 
+        ldy $4740, x
+        lda $E700, y
+        sta $5002, x
+ 
+        ldy $4741, x
+        lda $E700, y
+        sta $5001, x
+ 
+        ldy $4742, x
+        lda $E700, y
+        sta $5000, x
 
         dex
         dex
@@ -585,7 +589,8 @@ CreateReverseSprites:
     bpl loop
 }
 
-.macro WriteToD850_D8C7(){
+.macro WriteToD850_D8C7()
+{
    // Write $0A from $D850-$D8C7
     ldx #$78
     lda #$0a
@@ -846,7 +851,7 @@ Copy18BytesFrom9051To33:  // copy 18 bytes from $9051 to $33
     LoadSomething1: // Load data from $A854-$A837 and copy it to $EA45-$EA28
     {
         lda LOOKUP_A837, x
-        sta $EA28, x
+        sta $ea28, x
         dex
         bpl LoadSomething1
     }
@@ -886,17 +891,18 @@ InitBallSpritePositionAndSoundMemoryLocation:
     stx $EA6B
     stx $EA71
 
-    ldx #$92
+    ldx #>GHOSTBUSTERS_AUDIO_SAMPLE
     stx $EA6A
 
-    ldx #$BC
+    ldx #<GHOSTBUSTERS_AUDIO_SAMPLE
     stx $EA69
 
     rts
 }
 
 *= $93e2
-ClearMemory_0082_008A: {
+ClearMemory_0082_008A: 
+{
     // Write 0 between $0082-$008A
     ldx #02
     loop:

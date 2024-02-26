@@ -13,46 +13,46 @@ VIC_INIT_VALUES:
 // e.g GameState x10 (16) becomes x20 (32), that maps to StateLoadCityMapData
 *= $381a
 TableGameStates:
-    .word AccountScreen.States.InitIntro                                 // 00  (0,1)
-    .word AccountScreen.States.StoreAccountName                          // 01 => 2  (2,3)
-    .word AccountScreen.States.HaveAccountQuery                          // 02 => 4  (4,5)
-    .word AccountScreen.States.AccountNumberEntered                      // 03 => 6  (6, 7)
-    .word AccountScreen.States.InvalidHaveAccountQueryOption             // 04  (8)
-    .word AccountScreen.States.InvalidAccountNumberEntered               // 05  (10)
-    .word AccountScreen.States.ClearScreenAndResetTextOutputPos          // 06  (12)
-    .word VehicleSelectionScreen.States.Init                         // 07  (14)
-    .word VehicleSelectionScreen.States.CalculateBalance                  // 08  (16)
+    .word AccountScreen.States.InitIntro                            // 00  (0,1)
+    .word AccountScreen.States.StoreAccountName                     // 01 => 2  (2,3)
+    .word AccountScreen.States.HaveAccountQuery                     // 02 => 4  (4,5)
+    .word AccountScreen.States.AccountNumberEntered                 // 03 => 6  (6, 7)
+    .word AccountScreen.States.InvalidHaveAccountQueryOption        // 04  (8)
+    .word AccountScreen.States.InvalidAccountNumberEntered          // 05  (10)
+    .word AccountScreen.States.ClearScreenAndResetTextOutputPos     // 06  (12)
+    .word VehicleSelectionScreen.States.Init                        // 07  (14)
+    .word VehicleSelectionScreen.States.CalculateBalance            // 08  (16)
     .word VehicleSelectionScreen.States.ShowBalance                 // 09  (18)
-    .word VehicleSelectionScreen.States.DisplayCarOptions                         // 0a  (20)
-    .word VehicleSelectionScreen.States.ChooseCar                                 // 0b  (22)
-    .word VehicleSelectionScreen.States.DisplayCar            // 0c
-    .word EquipmentScreen.States.PrepareCar            // 0d
-    .word EquipmentScreen.States.SetTextAndSprites           // 0e
-    .word EquipmentScreen.States.UpdateLoop                    // 0f
-    .word CityMapScreen.States.Init                 // x10 => 32 (32, 33)
-    .word CityMapScreen.States.LoadCharData         // x11
-    .word CityMapScreen.States.UpdateLoop           // x12
-    .word DrivingScreen.States.LoadCharData         // x13
-    .word DrivingScreen.States.SetSpritePositions   // x14
-    .word DrivingScreen.States.DrivingToTarget      // x15
-    .word GhostbustingScreen.States.Init            // x16
-    .word BuildingScreenShared.States.LoadBuildingGraphics  // x17
-    .word GhostbustingScreen.States.PlaceTrap               // x18
-    .word GhostbustingScreen.States.PlaceFirstGhostbuster   // x19
-    .word GhostbustingScreen.States.PlaceSecondGhostbuster  // x1a
-    .word GhostbustingScreen.States.ActivateProtonStreams   // x1b
-    .word GhostbustingScreen.States.OpenTrap                // x1c
-    .word GhostbustingScreen.States.GhostCaptureFailed      // x1d
-    .word GhostbustingScreen.States.GhostCaptureSuccessful  // x1e
-    .word GhostbustingScreen.States.CaptureGhostInTrap      // x1f
-    .word GhostbustingScreen.States.MoveGhostbustersTowardsTrap         // x20 (32) => 64
-    .word GhostbustingScreen.States.PickUpTrap              // x21
-    .word GHQScreen.States.Init                            // x22
-    .word GHQScreen.States.MoveGhostbustersFromGHQToCar     // x23
-    .word CityMapScreen.States.MashmallowManAttackIncoming  // x24
-    .word CityMapScreen.States.MashmallowManDestroyingBuilding // x25
-    .word CityMapScreen.States.MashmallowManDefeated        // x26
-    .word CityMapScreen.States.MoveGhostsToOriginalPositions // x27
+    .word VehicleSelectionScreen.States.DisplayCarOptions           // 0a  (20)
+    .word VehicleSelectionScreen.States.ChooseCar                   // 0b  (22)
+    .word VehicleSelectionScreen.States.DisplayCar                  // 0c
+    .word EquipmentScreen.States.PrepareCar                         // 0d
+    .word EquipmentScreen.States.SetTextAndSprites                  // 0e
+    .word EquipmentScreen.States.UpdateLoop                         // 0f
+    .word CityMapScreen.States.Init                                 // x10 => 32 (32, 33)
+    .word CityMapScreen.States.LoadCharData                         // x11
+    .word CityMapScreen.States.UpdateLoop                           // x12
+    .word DrivingScreen.States.LoadCharData                         // x13
+    .word DrivingScreen.States.SetSpritePositions                   // x14
+    .word DrivingScreen.States.DrivingToTarget                      // x15
+    .word GhostbustingScreen.States.Init                            // x16
+    .word BuildingScreenShared.States.LoadBuildingGraphics          // x17
+    .word GhostbustingScreen.States.PlaceTrap                       // x18
+    .word GhostbustingScreen.States.PlaceFirstGhostbuster           // x19
+    .word GhostbustingScreen.States.PlaceSecondGhostbuster          // x1a
+    .word GhostbustingScreen.States.ActivateProtonStreams           // x1b
+    .word GhostbustingScreen.States.OpenTrap                        // x1c
+    .word GhostbustingScreen.States.GhostCaptureFailed              // x1d
+    .word GhostbustingScreen.States.GhostCaptureSuccessful          // x1e
+    .word GhostbustingScreen.States.CaptureGhostInTrap              // x1f
+    .word GhostbustingScreen.States.MoveGhostbustersTowardsTrap     // x20 (32) => 64
+    .word GhostbustingScreen.States.PickUpTrap                      // x21
+    .word GHQScreen.States.Init                                     // x22
+    .word GHQScreen.States.MoveGhostbustersFromGHQToCar             // x23
+    .word CityMapScreen.States.MashmallowManAttackIncoming          // x24
+    .word CityMapScreen.States.MashmallowManDestroyingBuilding      // x25
+    .word CityMapScreen.States.MashmallowManDefeated                // x26
+    .word CityMapScreen.States.MoveGhostsToOriginalPositions        // x27
     .word EnterZuulScreen.States.Init                               // x28
     .word EnterZuulScreen.States.Update                             // x29
     .word EnterZuulScreen.States.PrepareEnding                      // x2a
@@ -70,13 +70,13 @@ TableGameStates:
     .word GameOverSuccessScreen.States.DisplayCongratulations       // x36
     .word GameOverSuccessScreen.States.CalculateAccountBalance      // x37
     .word GameOverSuccessScreen.States.DisplayPortalClosed          // x38
-    .word TextScreenShared.States.PlayLaughOnFailure                  // x39
-    .word TextScreenShared.States.ResetGame                           // x3a
+    .word TextScreenShared.States.PlayLaughOnFailure                // x39
+    .word TextScreenShared.States.ResetGame                         // x3a
     .word GameOverFailureScreen.States.DisplayStartingBalanceText   // x3b
     .word GameOverFailureScreen.States.DisplayStartingBalanceAmount // x3c
     .word GameOverFailureScreen.States.DisplayEndBalanceText        // x3d
     .word GameOverFailureScreen.States.DisplayEndBalanceAmount      // x3e
-    .word GameOverFailureScreen.States.SetLaughSoundState            // x3f
+    .word GameOverFailureScreen.States.SetLaughSoundState           // x3f
 
 //keyboard matrix lookup?
 *= $389E
@@ -93,79 +93,14 @@ keyboardMatrixLookup:
     .byte $58, $56, $4E, $2C, $21, $2F
 }
 
-*= $3a16
-TEXT_NO_EMPTY_TRAPS:
-    .text "YOU HAVE NO EMPTY TRAPS. GO BACK TO GHQ. " + @"\$ff"
-
-TEXT_NO_BACKUP_MEN:
-    .text "YOUR BACKUP MEN ARE ALL OUT OF ACTION. GO BACK TO GHQ. " + @"\$ff"
-
-TEXT_SORRY_NO_BAIT:
-    .text "SORRY, NO BAIT. " + @"\$ff"
-
-TEXT_BACKPACKS_DISCHARGED:
-    .text "BACKPACKS DISCHARGED. GO BACK TO GHQ. " + @"\$ff"
-
-TEXT_MARSHMALLOW_ALERT:
-    .text "-MARSHMALLOW ALERT- " + @"\$ff"
-
-TEXT_MARSHMALLOW_MAN_DAMAGE:
-    .text "MARSHMALLOW MAN DID $4000 WORTH OF DAMAGE. THAT AMOUNT WILL BE DEDUCTED FROM YOUR BALANCE. " + @"\$ff"
-
-TEXT_MARSHMALLOW_REWARD:
-    .text "MAYOR AWARDS YOU $2000 FOR AVERTING MARSHMALLOW CATASTROPHE. " + @"\$ff"
-
-TEXT_CAR_FULL:
-    .text "YOUR CAR IS LOADED TO CAPACITY. " + @"\$ff"
-
-TEXT_CROSSED_STREAMS:
-    .text "YOU CROSSED THE STREAMS((( FORTUNATELY YOUR BACKPACKS SHORTED OUT IN TIME. GO BACK TO GHQ. " + @"\$ff"
-
-*= $3db4
-SoundEffectsLow:
-    .byte <SoundEffect1, <SoundEffect2, <SoundEffect3, <SoundEffect4, <SoundEffect5
-
-*= $3db9
-SoundEffectsHigh:
-    .byte >SoundEffect1, >SoundEffect2, >SoundEffect3, >SoundEffect4, >SoundEffect5
-
-*= $3dbe
-SoundEffect1:
-    .byte $05, $90, $F1, $95, $06
-    .byte $40, $FC, $B1, $EC, $00
-
-*= $3dc8
-SoundEffect2:
-    .byte $05, $90, $F8, $1B, $11
-    .byte $17, $BC, $32, $43, $15
-    .byte $AC
-    .byte $95, $31, $00
-
-*= $3dd6
-SoundEffect3:
-    .byte $05,$40,$44,$1B,$11
-    .byte $17,$BC,$F2,$2D,$AC,$00
-
-*= $3de1
-SoundEffect4:
-    .byte $05,$40
-    .byte $64,$95,$1B,$11,$27,$BC,$F2,$48
-    .byte $AC,$00
-
-*= $3ded
-SoundEffect5:
-    .byte $05,$00,$F0,$FC,$27,$FA
-    .byte $04,$0C,$31,$25,$FB,$EC
-    .byte $00
-
 *= $9051 "unknownData_1"
 unknownData_1:   .byte $1f, $1f, $0f, 0, $0f, 8, 1, 0, 8, $3f, 3, $99, 0, 0, 0, 0, 0, 0
 
 //==============================================================================
 
-
 *= $36a4 "ActivisionCharset" // Add character data at the $36A4 memory location
-    .import binary "..\Content\ActivisionCharset.bin"
+ACTIVISION_CHARSET:
+    .import binary "..\Content\TitleScreen\ActivisionCharset.bin"
 
 *= $3714
 RAINBOW_COLORS:
@@ -175,13 +110,9 @@ RAINBOW_COLORS:
 *= $b408 "SpritesData" // Add sprite data at the $B400 memory location
     .import binary "..\Content\SpritesData.bin", 8 // Skip the first 8 bytes as this is added by spritepad
 
-// .const CHARACTER_SET = $d000;
-// *= CHARACTER_SET  "CharacterSet" // Add character data at the $D000 memory location
-//     .import binary "..\Content\CharacterSet.bin"
-
 //==============================================================================
 
-*= $643B
+*= $643b
 TITLE_RASTER_POS:    //raster pos table
     .byte $EE, $EF, $EF, $EF, $EB, $EC, $ED, $EE
 
@@ -247,243 +178,243 @@ Data_A471:
     .byte $03, $3B, $03, $36, $FF
 
 Data_A47F:
-          .byte $85,$3E,$F2,$01,$3B,$43,$05,$3E
-          .byte $01,$3B,$43,$05,$3E,$01,$3B,$FF
+    .byte $85,$3E,$F2,$01,$3B,$43,$05,$3E
+    .byte $01,$3B,$43,$05,$3E,$01,$3B,$FF
 
 Data_A48F:
-          .byte $43,$05,$3E
-          .byte $01,$3B,$43,$03,$3E,$03,$3B,$21
-          .byte $39,$21,$3A,$03,$3B,$FF
+    .byte $43,$05,$3E
+    .byte $01,$3B,$43,$03,$3E,$03,$3B,$21
+    .byte $39,$21,$3A,$03,$3B,$FF
 
 Data_A4A0:
-          .byte $05
-          .byte $42
-          .byte $01,$3E,$43,$05,$42,$01,$3E,$43
-          .byte $05,$42,$01,$3E,$FF
+    .byte $05
+    .byte $42
+    .byte $01,$3E,$43,$05,$42,$01,$3E,$43
+    .byte $05,$42,$01,$3E,$FF
 
 Data_A4AF:
-          .byte $43,$05,$42
-          .byte $01,$3E,$43,$03,$42,$03,$3E,$21
-          .byte $3C,$21,$3D,$03,$3E,$FF
+    .byte $43,$05,$42
+    .byte $01,$3E,$43,$03,$42,$03,$3E,$21
+    .byte $3C,$21,$3D,$03,$3E,$FF
 
 Data_A4C0:
-          .byte $03,$3B,$03,$3B,$47,$03,$39,$43
-          .byte $03,$38,$43,$FF
+    .byte $03,$3B,$03,$3B,$47,$03,$39,$43
+    .byte $03,$38,$43,$FF
 
 Data_A4CC:
-          .byte $47,$87,$3E,$F2,$07,$3D
-          .byte $27,$39,$FF
+    .byte $47,$87,$3E,$F2,$07,$3D
+    .byte $27,$39,$FF
 
 Data_A4D5:
-          .byte $0F,$39,$4F,$FF
+    .byte $0F,$39,$4F,$FF
 
 Data_A4D9:
-          .byte $47,$07,$3D,$07,$39,$27,$3B,$FF
+    .byte $47,$07,$3D,$07,$39,$27,$3B,$FF
 
 Data_A4E1:
-          .byte $07,$3B,$57,$FF
+    .byte $07,$3B,$57,$FF
 
 Data_A4E5:
-          .byte $47,$07,$3D,$07,$39,$07,$40,$FF
+    .byte $47,$07,$3D,$07,$39,$07,$40,$FF
 
 Data_A4ED:
-          .byte $07,$3E,$07,$3D,$07,$3B,$03,$39
-          .byte $03,$36,$FF
+    .byte $07,$3E,$07,$3D,$07,$3B,$03,$39
+    .byte $03,$36,$FF
 
 Data_A4F8:
-          .byte $81,$47,$F7,$01,$47,$01,$47,$41
-          .byte $87,$3E,$F2,$07,$3D,$27,$39,$FF
+    .byte $81,$47,$F7,$01,$47,$01,$47,$41
+    .byte $87,$3E,$F2,$07,$3D,$27,$39,$FF
 
 Data_A508:
-          .byte $0F,$39,$4F,$FF
+    .byte $0F,$39,$4F,$FF
 
 Data_A50C:
-          .byte $81,$47,$F7,$01,$47,$01,$47,$41
-          .byte $45,$A1,$2A,$F2,$01,$36,$01,$36
-          .byte $03,$34,$07,$36,$FF
+    .byte $81,$47,$F7,$01,$47,$01,$47,$41
+    .byte $45,$A1,$2A,$F2,$01,$36,$01,$36
+    .byte $03,$34,$07,$36,$FF
 
 Data_A521:
-          .byte $47,$87,$2A,$F5,$07,$36,$21,$39
-          .byte $21,$3A,$03,$3B,$FF
+    .byte $47,$87,$2A,$F5,$07,$36,$21,$39
+    .byte $21,$3A,$03,$3B,$FF
 
 Data_A52E:
-          .byte $43,$05,$42,$01,$3E,$43,$0F,$47,$FF
+    .byte $43,$05,$42,$01,$3E,$43,$0F,$47,$FF
 
 Data_A537:
-          .byte $47,$03,$3E,$03,$40,$23,$42,$21
-          .byte $40,$25,$3E,$03,$3E,$FF
+    .byte $47,$03,$3E,$03,$40,$23,$42,$21
+    .byte $40,$25,$3E,$03,$3E,$FF
 
 Data_A545:
-          .byte $47,$01,$3B,$01,$3B,$01,$3B,$01
-          .byte $3B,$23,$39,$03,$3D,$03,$3B,$81
-          .byte $2F,$F8,$01,$2F,$FF
+    .byte $47,$01,$3B,$01,$3B,$01,$3B,$01
+    .byte $3B,$23,$39,$03,$3D,$03,$3B,$81
+    .byte $2F,$F8,$01,$2F,$FF
 
 Data_A55A:
-          .byte $03,$32,$03,$2F,$07,$32,$83,$39
-          .byte $F5,$43,$03,$38,$81,$2F,$F8,$01
-          .byte $2D,$FF
+    .byte $03,$32,$03,$2F,$07,$32,$83,$39
+    .byte $F5,$43,$03,$38,$81,$2F,$F8,$01
+    .byte $2D,$FF
 
 Data_A56C:
-          .byte $03,$2F,$03,$2F,$07,$2F,$83,$39
-          .byte $F5,$43,$03,$38,$43,$FF
+    .byte $03,$2F,$03,$2F,$07,$2F,$83,$39
+    .byte $F5,$43,$03,$38,$43,$FF
 
 Data_A57A:
-          .byte $03,$2F,$03,$2F,$47,$03,$39,$03
-          .byte $39,$03,$38,$81,$2F,$F8,$01,$2F
-          .byte $FF
+    .byte $03,$2F,$03,$2F,$47,$03,$39,$03
+    .byte $39,$03,$38,$81,$2F,$F8,$01,$2F
+    .byte $FF
 
 Data_A58B:
-          .byte $03,$32,$03,$2F,$03,$32,$83
-          .byte $3B,$F5,$23,$3D,$03,$39,$45,$81
-          .byte $2F,$F8,$FF
+    .byte $03,$32,$03,$2F,$03,$32,$83
+    .byte $3B,$F5,$23,$3D,$03,$39,$45,$81
+    .byte $2F,$F8,$FF
 
 Data_A59D:
-          .byte $03,$2F,$03,$2F,$01
-          .byte $2F,$81,$3B,$F5,$01,$3B,$01,$3B
-          .byte $23,$39,$03,$3B,$43,$83,$2F,$F8
-          .byte $FF
+    .byte $03,$2F,$03,$2F,$01
+    .byte $2F,$81,$3B,$F5,$01,$3B,$01,$3B
+    .byte $23,$39,$03,$3B,$43,$83,$2F,$F8
+    .byte $FF
 
 Data_A5B3:
-          .byte $03,$2F,$81,$3B,$F5,$01,$3B
-          .byte $23,$3F,$03,$3B,$23,$3D,$03,$39
-          .byte $47,$FF
+    .byte $03,$2F,$81,$3B,$F5,$01,$3B
+    .byte $23,$3F,$03,$3B,$23,$3D,$03,$39
+    .byte $47,$FF
 
 Data_A5C4:
-          .byte $47,$01,$3B,$01,$3B,$01
-          .byte $3B,$01,$3B,$23,$39,$03,$3D,$03
-          .byte $3B,$83,$2F,$F8,$FF
+    .byte $47,$01,$3B,$01,$3B,$01
+    .byte $3B,$01,$3B,$23,$39,$03,$3D,$03
+    .byte $3B,$83,$2F,$F8,$FF
 
 Data_A5D7:
-          .byte $43,$07,$32
-          .byte $01,$31,$01,$2F,$07,$32,$03,$2F
-          .byte $03,$2D,$FF
+    .byte $43,$07,$32
+    .byte $01,$31,$01,$2F,$07,$32,$03,$2F
+    .byte $03,$2D,$FF
 
 Data_A5E5:
-          .byte $41,$01,$2D,$01,$2F
-          .byte $01,$2D,$07,$2F,$4F,$FF
+    .byte $41,$01,$2D,$01,$2F
+    .byte $01,$2D,$07,$2F,$4F,$FF
 
 Data_A5F0:
-          .byte $07,$36
-          .byte $03,$34,$03,$32,$07,$36,$45,$01
-          .byte $2F,$FF
+    .byte $07,$36
+    .byte $03,$34,$03,$32,$07,$36,$45,$01
+    .byte $2F,$FF
 
 Data_A5FC:
-          .byte $01,$2F,$01,$2F,$03,$2F
-          .byte $03,$2F,$03,$2D,$03,$2F,$4B,$FF
+    .byte $01,$2F,$01,$2F,$03,$2F
+    .byte $03,$2F,$03,$2D,$03,$2F,$4B,$FF
 
 *= $A610
 Data_A610:
-          .byte $2F,$1E,$2F,$1D,$FF
+    .byte $2F,$1E,$2F,$1D,$FF
 
 Data_A615:
-          .byte $2F,$1C,$2F,$1A,$FF
+    .byte $2F,$1C,$2F,$1A,$FF
 
 Data_A61A:
-          .byte $3F,$22,$FF
+    .byte $3F,$22,$FF
 
 Data_A61D:
-          .byte $83,$17,$F1,$05,$17
-          .byte $01,$1B,$03,$1E,$03,$21,$03,$21
-          .byte $03,$1C,$03,$1C,$FF
+    .byte $83,$17,$F1,$05,$17
+    .byte $01,$1B,$03,$1E,$03,$21,$03,$21
+    .byte $03,$1C,$03,$1C,$FF
 
 Data_A62F:
-          .byte $03,$17,$05
-          .byte $17,$01,$1B,$03,$1E,$03,$21,$03
-          .byte $21,$03,$1C,$03,$1E,$FF
+    .byte $03,$17,$05
+    .byte $17,$01,$1B,$03,$1E,$03,$21,$03
+    .byte $21,$03,$1C,$03,$1E,$FF
 
 Data_A640:
-          .byte $07,$23
-          .byte $07,$2F,$07,$23,$07,$2D,$FF
+    .byte $07,$23
+    .byte $07,$2F,$07,$23,$07,$2D,$FF
 
 Data_A649:
-          .byte $07
-          .byte $21,$07,$2D,$03,$21,$03,$21,$03
-          .byte $21,$03,$21,$FF
+    .byte $07
+    .byte $21,$07,$2D,$03,$21,$03,$21,$03
+    .byte $21,$03,$21,$FF
 
 Data_A656:
-          .byte $07,$20,$07,$2C
-          .byte $07,$20,$07,$28,$FF
+    .byte $07,$20,$07,$2C
+    .byte $07,$20,$07,$28,$FF
 
 Data_A65F:
-          .byte $07,$1C,$07
-          .byte $28,$03,$1C,$03,$1C,$03,$1C,$03
-          .byte $1C,$FF
+    .byte $07,$1C,$07
+    .byte $28,$03,$1C,$03,$1C,$03,$1C,$03
+    .byte $1C,$FF
 
 Data_A66C:
-          .byte $03,$12,$03,$12,$03,$12
-          .byte $03,$12,$03,$12,$03,$12,$03,$12
-          .byte $03,$19,$FF
+    .byte $03,$12,$03,$12,$03,$12
+    .byte $03,$12,$03,$12,$03,$12,$03,$12
+    .byte $03,$19,$FF
 
 Data_A67D:
-          .byte $43,$03,$1E,$4F,$07
-          .byte $19,$FF
+    .byte $43,$03,$1E,$4F,$07
+    .byte $19,$FF
 
 Data_A684:
-          .byte $43,$03,$1E,$57,$FF
+    .byte $43,$03,$1E,$57,$FF
 
 Data_A689:
-          .byte $03,$1E,$37,$1E,$03,$1E,$FF
+    .byte $03,$1E,$37,$1E,$03,$1E,$FF
 
 Data_A690:
-          .byte $83,$17,$F6,$37,$15,$23,$15,$FF
+    .byte $83,$17,$F6,$37,$15,$23,$15,$FF
 
 Data_A698:
-          .byte $0B,$15
-          .byte $03,$17,$03,$17,$43,$47,$FF
+    .byte $0B,$15
+    .byte $03,$17,$03,$17,$43,$47,$FF
 
 Data_A6A1:
-          .byte $03,$17,$37,$1A,$03,$26,$FF
+    .byte $03,$17,$37,$1A,$03,$26,$FF
 
 Data_A6A8:
-          .byte $07,$1E,$07,$1E,$07,$12,$07,$12,$FF
+    .byte $07,$1E,$07,$1E,$07,$12,$07,$12,$FF
 *= $A6B6
 Data_A6B6:
-          .byte $2F,$2A,$2F,$29,$FF
+    .byte $2F,$2A,$2F,$29,$FF
 
 Data_A6BB:
-          .byte $2F,$28,$2F,$32,$FF
+    .byte $2F,$28,$2F,$32,$FF
 
 Data_A6C0:
-          .byte $3F,$2E,$FF
+    .byte $3F,$2E,$FF
 
 Data_A6C3:
-          .byte $81,$5F,$63,$01,$5F,$01,$5F
-          .byte $01,$5F,$81,$5F,$93,$01,$5F,$01
-          .byte $5F,$01,$5F,$81,$5F,$C3,$01,$5F
-          .byte $01,$5F,$01,$5F,$81,$5F,$F3,$01
-          .byte $5F,$01,$5F,$01,$5F,$FF
+    .byte $81,$5F,$63,$01,$5F,$01,$5F
+    .byte $01,$5F,$81,$5F,$93,$01,$5F,$01
+    .byte $5F,$01,$5F,$81,$5F,$C3,$01,$5F
+    .byte $01,$5F,$01,$5F,$81,$5F,$F3,$01
+    .byte $5F,$01,$5F,$01,$5F,$FF
 
 Data_A6E8:
-          .byte $83,$5F
-          .byte $F3,$03,$5F,$03,$17,$03,$5F,$03
-          .byte $5F,$03,$5F,$03,$17,$03,$5F,$FF
+    .byte $83,$5F
+    .byte $F3,$03,$5F,$03,$17,$03,$5F,$03
+    .byte $5F,$03,$5F,$03,$17,$03,$5F,$FF
 
 Data_A6FA:
-          .byte $81,$5F,$F3,$01,$5F,$01,$5F,$01
-          .byte $5F,$01,$5F,$01,$5F,$01,$5F,$01
-          .byte $5F,$01,$5F,$01,$5F,$01,$5F,$01
-          .byte $5F,$01,$5F,$01,$5F,$01,$5F,$01
-          .byte $5F,$FF
+    .byte $81,$5F,$F3,$01,$5F,$01,$5F,$01
+    .byte $5F,$01,$5F,$01,$5F,$01,$5F,$01
+    .byte $5F,$01,$5F,$01,$5F,$01,$5F,$01
+    .byte $5F,$01,$5F,$01,$5F,$01,$5F,$01
+    .byte $5F,$FF
 
 Data_A71C:
-          .byte $87,$42,$F2,$07,$40,$07
-          .byte $3E,$07,$3D,$FF
+    .byte $87,$42,$F2,$07,$40,$07
+    .byte $3E,$07,$3D,$FF
 
 Data_A726:
-          .byte $03,$5F,$03,$5F
-          .byte $83,$3B,$F2,$03,$3D,$23,$3E,$21
-          .byte $3D,$25,$3B,$03,$3B,$FF
+    .byte $03,$5F,$03,$5F
+    .byte $83,$3B,$F2,$03,$3D,$23,$3E,$21
+    .byte $3D,$25,$3B,$03,$3B,$FF
 
 Data_A738:
-          .byte $03,$17
-          .byte $03,$5F,$47,$01,$5F,$01,$5F,$01
-          .byte $5F,$01,$5F,$01,$17,$45,$FF
+    .byte $03,$17
+    .byte $03,$5F,$47,$01,$5F,$01,$5F,$01
+    .byte $5F,$01,$5F,$01,$17,$45,$FF
 
 Data_A749:
-          .byte $83
-          .byte $34,$F2,$03,$32,$03,$34,$03,$32
-          .byte $05,$36,$23,$34,$21,$32,$03,$2F
-          .byte $FF
+    .byte $83
+    .byte $34,$F2,$03,$32,$03,$34,$03,$32
+    .byte $05,$36,$23,$34,$21,$32,$03,$2F
+    .byte $FF
 
 *= $A75B      
 LOOKUP_A75B:    
@@ -525,12 +456,6 @@ LOOKUP_A837:
     .byte $03,$04,$05,$06,$01,$02,$03,$04
     .byte $05,$06,$01,$02,$06,$01,$03,$04
     .byte $05,$04,$05,$06,$02,$03
-
-*=$aaff // Each car graphic uses $2ff of bytes
-CAR_GRAPHIC_ADDRESS_HIGH:
-    .byte $02, $05, $08, $0B
-CAR_GRAPHIC_ADDRESS_LOW:
-    .byte $00, $00, $00, $00
 
 *= $b3f4
 TEXT_LOOKUP_LOW:
