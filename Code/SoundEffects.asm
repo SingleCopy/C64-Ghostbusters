@@ -447,7 +447,7 @@
 
         label_8e21:
         jsr _63BA
-        jsr _91C8
+        jsr UpdateBallPosition
 
         label_8e27:
         lda #$ff

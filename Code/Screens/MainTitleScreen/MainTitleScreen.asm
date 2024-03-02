@@ -6,7 +6,7 @@
     sta $97
     jsr ClearMemory_0082_008A
     jsr InitBallSpritePositionAndSoundMemoryLocation
-    jsr _91C8
+    jsr UpdateBallPosition
     cli 
 
     TitleLoop:
@@ -37,7 +37,7 @@
         jsr DisableKeyboardInterrupts
         jsr ScanKeyboard
         jsr PlayThemeTune
-        jsr _91C8
+        jsr UpdateBallPosition
         jsr _63BA
         lda $EA73 
         beq label_634b
@@ -45,7 +45,7 @@
         and #$07
         cmp #$01
         bne label_634b
-        jsr _91C8
+        jsr UpdateBallPosition
         jsr _63BA
     }
 
@@ -144,10 +144,10 @@
         CheckF3WasPressed:
         {
             cmp #$28    // Has F3 been pressed
-            beq StartGame
-            jmp TitleLoop
-        }
+            beq StartGame   
+        }   
     }
+    jmp TitleLoop
 }
 
 *= $93E1
