@@ -11,7 +11,7 @@ RasterInterrupt:
     pha
     cld
     lda $eb
-    bne label_8ed1
+    bne _8EB7.label_8ed1
     lda INTERRUPT_STATUS_REGISTER
     and #01
     bne WasRasterIRQ
@@ -21,7 +21,7 @@ RasterInterrupt:
     {
         lda ShouldLoadAccountScreen
         bne label_8ed4
-        lda $9a
+        lda RenderNextLyricCountdown
         ora #$18
         ldx #$c1
 
@@ -47,7 +47,7 @@ RasterInterrupt:
     *= $8EB7
     _8EB7: 
     {
-        lda $9A
+        lda RenderNextLyricCountdown
         and #07
         tax
         lda TITLE_RASTER_POS, x
@@ -59,21 +59,21 @@ RasterInterrupt:
             bne loop
         }
 
+        // Wait until we start a new raster line
         ldy #$0c
         wait:
         {
             dey
             bne wait
         }
-
-        stx VIC_SCREEN_CONTROL_REGISTER_1
+        
+        // Prevent flickering by setting the scroll y on a new raster line, 
+        stx VIC_SCREEN_CONTROL_REGISTER_1 // set scroll y to 3 to stop it moving with the lyrics
         jsr _97A1
-    } 
 
-    label_8ed1:
-    {
+        label_8ed1:
         jmp _8FC0
-    }
+    } 
 
     label_8ed4:
     {
@@ -224,21 +224,22 @@ RasterInterrupt:
 
             lda #$01
             sta LoopTrigger
-            jsr PlayThemeTune
+            jsr MainTitleScreen.PlayThemeTune
             jsr SoundEffects.label_3be9
         }
     }
 }
 
 *= $8fc0
-_8FC0: {
+_8FC0: 
+{
     lda #$81
     sta INTERRUPT_STATUS_REGISTER
 
     lda #$b8
     sta VIC_CURRENT_RASTER_LINE
     lda VIC_SCREEN_CONTROL_REGISTER_1
-    and #$7f
+    and #$7f        // Why clear the MSB from $d011?
     sta VIC_SCREEN_CONTROL_REGISTER_1
     
     pla
@@ -250,7 +251,8 @@ _8FC0: {
 }
 
 *= $9756
-DisplayTitleScroller:{
+DisplayTitleScroller:
+{
     bit 02
     bvs continue1
     bmi continue2
@@ -316,7 +318,8 @@ DisplayTitleScroller:{
 }
 
 *= $97A1
-_97A1: {
+_97A1: 
+{
     lda $04
     sec
     sbc #$b8
@@ -378,7 +381,7 @@ _97A1: {
         bne loop
     }
 
-    sty VIC_SCREEN_CONTROL_REGISTER_2
+    sty VIC_SCREEN_CONTROL_REGISTER_2       // Set bit 0-2 for x scrolling the title info
     stx VIC_SCREEN_CONTROL_REGISTER_1
     lda VIC_SPRITE_MULTICOLOR_MODE_REGISTER
 

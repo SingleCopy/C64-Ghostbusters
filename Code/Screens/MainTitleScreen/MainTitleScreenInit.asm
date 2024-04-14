@@ -14,7 +14,15 @@
         lda #Speech.Laugh  // Ha ha ha ha ha
         jsr SoundEffects.TriggerSpeech
 
-        MainSetup();
+        lda #$00
+        sta $08
+        sta TitleSongElapsedTime
+        jsr ClearMemory_0082_008A
+        jsr InitBallSpritePositionAndSoundMemoryLocation
+        jsr UpdateBallPosition
+        cli 
+
+        // Continues to MainTitleScreen.TitleScreenLoop;
     }
 
     *= $6425

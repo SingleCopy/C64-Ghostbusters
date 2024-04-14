@@ -466,75 +466,75 @@ SplitValueInTwoDigits:
     rts
 }
 
-    *= $9c8f
-    PrintChar: 
-    {
-        cmp #$00
-        sta ZeroPagePointer3 + 1
-        beq endOfText
-        bpl notXJump
+*= $9c8f
+PrintChar: 
+{
+    cmp #$00
+    sta ZeroPagePointer3 + 1
+    beq endOfText
+    bpl notXJump
 
-        // jump in X
-        and #$3f
-        sta TextOutputX
-        jmp endOfText
+    // jump in X
+    and #$3f
+    sta TextOutputX
+    jmp endOfText
 
-        notXJump:
-        cmp #$0d
-        beq lineBreak
-        cmp #$20
-        bne continue
-        lda #$00
+    notXJump:
+    cmp #$0d
+    beq lineBreak
+    cmp #$20
+    bne continue
+    lda #$00
 
-        continue:
-        cmp #$40
-        bcc charOverflow
-        sec
-        sbc #$40
+    continue:
+    cmp #$40
+    bcc charOverflow
+    sec
+    sbc #$40
 
-        charOverflow:
-        sta ZeroPagePointer3
-        lda #$15
-        sta ZeroPagePointer1 + 1
+    charOverflow:
+    sta ZeroPagePointer3
+    lda #$15
+    sta ZeroPagePointer1 + 1
 
-        ldy TextOutputY
-        lda TEXT_LINE_OFFSET, y
-        asl
-        rol ZeroPagePointer1 + 1
-        asl
-        rol ZeroPagePointer1 + 1
-        sta ZeroPagePointer1
-        lda ZeroPagePointer3
-        ldy TextOutputX
-        sta (ZeroPagePointer1), y
+    ldy TextOutputY
+    lda TEXT_LINE_OFFSET, y
+    asl
+    rol ZeroPagePointer1 + 1
+    asl
+    rol ZeroPagePointer1 + 1
+    sta ZeroPagePointer1
+    lda ZeroPagePointer3
+    ldy TextOutputX
+    sta (ZeroPagePointer1), y
 
-        // change high byte to color RAM
-        lda ZeroPagePointer1 + 1
-        and #$03
-        ora #$d8
-        sta ZeroPagePointer1 + 1
+    // change high byte to color RAM
+    lda ZeroPagePointer1 + 1
+    and #$03
+    ora #$d8
+    sta ZeroPagePointer1 + 1
 
-        // char color
-        lda TextOutputColor
-        sta (ZeroPagePointer1), y
+    // char color
+    lda TextOutputColor
+    sta (ZeroPagePointer1), y
 
-        inc TextOutputX
-        lda $15
-        beq endOfText
-        lda TextOutputColor
-        bne endOfText
-        lda TextOutputX
-        cmp #$20
-        bcc endOfText
-        lda ZeroPagePointer3 + 1
-        cmp #$20
-        bne endOfText
+    inc TextOutputX
+    lda $15
+    beq endOfText
+    lda TextOutputColor
+    bne endOfText
+    lda TextOutputX
+    cmp #$20
+    bcc endOfText
+    lda ZeroPagePointer3 + 1
+    cmp #$20
+    bne endOfText
 
-        lineBreak:
-        lda #$01
-        sta TextOutputX
-        inc TextOutputY
+    lineBreak:
+    lda #$01
+    sta TextOutputX
+    inc TextOutputY
 
-        endOfText:
-        rts
-    }
+    endOfText:
+    rts
+}

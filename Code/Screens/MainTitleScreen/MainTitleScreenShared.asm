@@ -1,23 +1,23 @@
 *= $63BA
-_63BA: 
+UpdateSongLyricsTimers: 
 {
     inc $08
-    ldx $97
-    cpx #$70
+    ldx TitleSongElapsedTime
+    cpx #$70 // 112  
     beq return
     lda Data_68F0, x
     cmp $08
     bne return
     cmp #$00
 
-    beq incrementSomething
-    lda $9a
+    beq incrementTitleSongElapsedTime
+    lda RenderNextLyricCountdown
     clc
     adc #$10
-    sta $9a
+    sta RenderNextLyricCountdown
     
-    incrementSomething:
-    inc $97
+    incrementTitleSongElapsedTime:
+    inc TitleSongElapsedTime
 
     return:
     rts
@@ -26,18 +26,20 @@ _63BA:
 *= $91C8
 UpdateBallPosition: 
 {
+    .label ExtendedSpriteMask = $23
+
     sta $EA6D
     stx $EA6F
     sty $EA6E
 
     lda #$01
     sta VIC_SPRITE_ENABLE_REGISTER
-    ldx $EA6B // BallBounceTrigger??
+    ldx BallBounceTrigger
     bne label_9235
-    dec $ea71
+    dec BallLyricCountdownTimer
     bpl label_9235
     ldy #$00
-    sty $ea71
+    sty BallLyricCountdownTimer
     lda $ea69
     sta ZeroPagePointer1
     lda $ea6a
@@ -52,15 +54,15 @@ UpdateBallPosition:
     moveBallToTheRight: // $91fc
     plp
     bpl label_9212
-    cmp #$BF
-    bne label_920b
+    cmp #$bf
+    bne resetBallLyricCountdownTimer
     lda #$00
     sta BallSpriteX
-    sta BallSpriteExtendedY
+    sta BallSpriteExtendedX
 
-    label_920b:
+    resetBallLyricCountdownTimer: // $920b:
     and #$7f
-    sta $EA71
+    sta BallLyricCountdownTimer
     lda #$00
 
     label_9212:
@@ -82,22 +84,22 @@ UpdateBallPosition:
     sta $EA69
     
     label_9235:
-    lda BallSwingCurve, x
+    lda BallBounceCurve, x
     clc
     adc BallSpriteY
     sta BallSpriteY
-    inc $EA6B
-    lda $EA6B
+    inc BallBounceTrigger
+    lda BallBounceTrigger
     and #$0F
-    sta $EA6B
+    sta BallBounceTrigger
     lda BallSpriteX
     clc
     adc $EA6C
     sta BallSpriteX
 
-    lda BallSpriteExtendedY
+    lda BallSpriteExtendedX
     adc #$00
-    sta BallSpriteExtendedY
+    sta BallSpriteExtendedX
     beq label_926d
 
     lda BallSpriteX
@@ -105,7 +107,7 @@ UpdateBallPosition:
     bcc label_926d
     lda #$00
     sta BallSpriteX
-    sta BallSpriteExtendedY
+    sta BallSpriteExtendedX
 
     label_926d:
     lda BallSpriteY
@@ -116,13 +118,13 @@ UpdateBallPosition:
     sta VIC_SPRITE_0_X + 2
 
     // set up extended x bit
-    lda BallSpriteExtendedY
+    lda BallSpriteExtendedX
     asl
-    ora BallSpriteExtendedY
-    sta ZeroPagePointer1
+    ora BallSpriteExtendedX
+    sta ExtendedSpriteMask
     lda VIC_SPRITE_X_POS_EXTENDED
     and #$FC
-    ora ZeroPagePointer1
+    ora ExtendedSpriteMask
     sta VIC_SPRITE_X_POS_EXTENDED
     lda $EA6D
     ldx $EA6F

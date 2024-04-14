@@ -98,12 +98,12 @@ Data_68F0:
     .import binary "..\Content\TitleScreen\GhostbustersLogoCharMap.bin"
 
 *= $8EA7
-BallSwingCurve:
+BallBounceCurve:
     .byte $FD, $FD, $FD, $FE, $FE, $FE, $FF, $00
     .byte $00, $01, $02, $02, $02, $03, $03, $03
 
 *= $92BC // Might be the audio sample 'GHOSTBUSTERS'
-GHOSTBUSTERS_AUDIO_SAMPLE: 
+BallInstructionsStart: 
     .byte $A7,$01,$86,$01,$86,$01,$86,$01
     .byte $86,$01,$86,$01,$86,$01,$83,$02
     .byte $40,$02,$02,$84,$0E,$05,$03,$03
@@ -141,6 +141,7 @@ GHOSTBUSTERS_AUDIO_SAMPLE:
     .byte $02,$02,$85,$0E,$04,$04,$82,$12
     .byte $00,$02,$02,$85,$01,$86,$02,$86
     .byte $02,$86,$02,$86,$BF
+BallInstructionsEnd:
 
 *= $A409
 Data_A409:

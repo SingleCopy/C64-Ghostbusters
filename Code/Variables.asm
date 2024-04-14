@@ -10,8 +10,8 @@
 .label LastKeyPressed   = $17
 .label DrivingStripeSpeed   = $1b
 .label ShouldLoadAccountScreen = $20  // Loads the account screen when set to 1, 2 when loading the city map
-.label TitleSongTextPointerLo   = $21
-.label TitleSongTextPointerHi   = $22
+.label TitleSongTextPointerLow   = $21
+.label TitleSongTextPointerHigh   = $22
 .label ZeroPagePointer1 = $23
 .label ZeroPagePointer3 = $25
 .label JoystickValue    = $33   // also used for various other things!
@@ -52,6 +52,8 @@
 .label CaptureGhostVisitType = $6e
  
 .label CountdownTimer      = $7c   // uses for several things, also marshmallow stomp progress, when it counts down to zero, perform the next actiono
+.label TitleSongElapsedTime      = $97
+.label RenderNextLyricCountdown  = $9a  // Set to $15, then counts down to 0.
 
 // sprite shadow pos (X0,Y0 X1,Y1 ...) from $a0 to $af
 .label ObjectPosX       = $a0
@@ -67,10 +69,12 @@
 
 .label KeyboardEntryBuffer  = $ea00 // 20 chars
 .label AccountBalance       = $ea14
-.label BallSpriteX = $ea66
-.label BallSpriteY = $ea67
-.label BallSpriteExtendedY = $ea68
-.label ShadowSIDVolume    = $ea82
+.label BallSpriteX          = $ea66
+.label BallSpriteY          = $ea67
+.label BallSpriteExtendedX  = $ea68
+.label BallBounceTrigger    = $ea6b
+.label BallLyricCountdownTimer  = $ea71
+.label ShadowSIDVolume      = $ea82
 .label LastMiniGameResult   = $ea7a // 0 = good, everything else bad
 .label AccountName          = $eab3 // 20 chars
 .label AccountNumber        = $eac7 // Account number, BCD encoded, 4 bytes, $eac7 to $eaca

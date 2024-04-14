@@ -731,7 +731,7 @@ CreateReverseSprites:
 .macro SetSpriteRegisters() 
 { 
     lda #0
-    sta $9a
+    sta RenderNextLyricCountdown
     
     lda #$02
     sta VIC_SPRITE_MULTICOLOR_MODE_REGISTER
@@ -756,10 +756,10 @@ CreateReverseSprites:
     sta $D001
     sta $D003
 
-    lda #$43
-    sta $21
-    lda #$64
-    sta $22
+    lda #<Lyrics
+    sta TitleSongTextPointerLow
+    lda #>Lyrics
+    sta TitleSongTextPointerHigh
 }
 
 .macro WaitForStartOfNextRasterLine() 
@@ -887,14 +887,14 @@ InitBallSpritePositionAndSoundMemoryLocation:
     stx BallSpriteY
 
     ldx #0
-    stx BallSpriteExtendedY
-    stx $EA6B
-    stx $EA71
+    stx BallSpriteExtendedX
+    stx BallBounceTrigger
+    stx BallLyricCountdownTimer
 
-    ldx #>GHOSTBUSTERS_AUDIO_SAMPLE
+    ldx #>BallInstructionsStart
     stx $EA6A
 
-    ldx #<GHOSTBUSTERS_AUDIO_SAMPLE
+    ldx #<BallInstructionsStart
     stx $EA69
 
     rts

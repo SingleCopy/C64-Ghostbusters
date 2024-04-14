@@ -446,7 +446,7 @@
         jsr label_63d7 
 
         label_8e21:
-        jsr _63BA
+        jsr UpdateSongLyricsTimers
         jsr UpdateBallPosition
 
         label_8e27:

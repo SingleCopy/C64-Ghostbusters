@@ -113,8 +113,8 @@ RAINBOW_COLORS:
 //==============================================================================
 
 *= $643b
-TITLE_RASTER_POS:    //raster pos table
-    .byte $EE, $EF, $EF, $EF, $EB, $EC, $ED, $EE
+TITLE_RASTER_POS:    // Set which line to interrupt on when setting the the scroll-Y to default for the scrolling text
+    .byte 238, 239, 239, 239, 235, 236, 237, 238
 
 *= $a200
 GhostbustersThemeTune:
